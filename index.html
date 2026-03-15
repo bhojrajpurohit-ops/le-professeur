@@ -3,659 +3,432 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-<title>Le Professeur — Learn French Free</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<title>Le Professeur — Complete French Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#faf7f2;--sf:#fff;--bd:#e8e2d8;--tx:#1a1714;--tx2:#7d776d;--tx3:#b0a99e;
-  --blue:#4a7fd4;--blue-l:#e8f0fc;--blue-d:#3366b8;
-  --green:#48a860;--green-l:#e6f5eb;
-  --amber:#d4952a;--amber-l:#fdf3e0;
-  --red:#d45050;--red-l:#fce8e8;
-  --purple:#7a5fc0;--purple-l:#f0ecf8;
-  --rose:#c86080;--rose-l:#fce8f0;
-  --f1:'DM Sans',system-ui,sans-serif;
-  --f2:'Playfair Display',Georgia,serif;
+--bg:#0c0f1a;--bg2:#141829;--card:#1a1f35;--card2:#222840;--bd:#2a3050;
+--tx:#eef0f6;--tx2:#8890a8;--tx3:#555d78;
+--gold:#fbbf24;--green:#34d399;--blue:#60a5fa;--pink:#f472b6;--red:#f87171;--purple:#a78bfa;--teal:#2dd4bf;--orange:#fb923c;
+--f1:'Plus Jakarta Sans',system-ui,sans-serif;--f2:'Fraunces',Georgia,serif;
 }
-html{height:100%;background:var(--bg)}
-body{font-family:var(--f1);color:var(--tx);min-height:100%;background:var(--bg);font-size:15px;-webkit-font-smoothing:antialiased;padding-bottom:80px}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#ccc;border-radius:8px}
+html{background:var(--bg);color:var(--tx)}
+body{font-family:var(--f1);min-height:100vh;padding-bottom:72px;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#333;border-radius:8px}
 img{max-width:100%;display:block;border-radius:14px}
-a{color:var(--blue);text-decoration:none}
 
-/* Bottom Nav */
-.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--sf);border-top:1.5px solid var(--bd);display:flex;z-index:999;padding:6px 0 env(safe-area-inset-bottom,8px)}
-.bnav button{flex:1;background:none;border:none;font-family:var(--f1);font-size:10px;font-weight:700;color:var(--tx3);cursor:pointer;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:2px}
-.bnav button.on{color:var(--blue)}
-.bnav button .ico{font-size:22px}
+.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--bd);display:flex;z-index:999;padding:6px 0 max(6px,env(safe-area-inset-bottom))}
+.bnav button{flex:1;background:none;border:none;font-family:var(--f1);font-size:10px;font-weight:700;color:var(--tx3);cursor:pointer;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:3px}
+.bnav button.on{color:var(--gold)}
+.bnav .ic{font-size:20px}
 
-/* Container */
-.ctr{max-width:520px;margin:0 auto;padding:0 16px}
+.ctr{max-width:520px;margin:0 auto;padding:16px}
+.card{background:var(--card);border-radius:18px;padding:20px;margin-bottom:14px;border:1px solid var(--bd)}
 
-/* Page */
-.pg{display:none}.pg.on{display:block}
+/* Hero with image */
+.hero{position:relative;border-radius:20px;overflow:hidden;margin-bottom:16px}
+.hero img{width:100%;height:200px;object-fit:cover}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,0,0,.8));display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.hero .ov h2{font-family:var(--f2);font-size:24px;color:#fff}
+.hero .ov p{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
 
-/* Hero */
-.hero{position:relative;overflow:hidden;border-radius:0 0 24px 24px;margin-bottom:16px}
-.hero-img{width:100%;height:220px;object-fit:cover;border-radius:0}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.55));display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
-.hero-overlay h1{font-family:var(--f2);font-size:28px;font-weight:900;color:#fff}
-.hero-overlay p{font-size:13px;color:rgba(255,255,255,.85);margin-top:4px}
+/* Level cards */
+.lvc{border-radius:18px;padding:22px;margin-bottom:12px;cursor:pointer;position:relative;overflow:hidden;transition:.2s;border:1px solid transparent}
+.lvc:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.1)}
+.lvc h3{font-family:var(--f2);font-size:20px;color:#fff;position:relative;z-index:1}
+.lvc p{font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;position:relative;z-index:1}
+.lvc .bg-img{position:absolute;inset:0;opacity:.3}
+.lvc .bg-img img{width:100%;height:100%;object-fit:cover}
+.lvc .badge{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:800;color:#fff;z-index:1}
+.lvc .pb{height:5px;background:rgba(255,255,255,.15);border-radius:3px;margin-top:12px;position:relative;z-index:1}
+.lvc .pf{height:100%;background:#fff;border-radius:3px;transition:width .5s}
 
-/* Cards */
-.card{background:var(--sf);border-radius:18px;padding:20px;margin-bottom:14px;border:1.5px solid var(--bd);box-shadow:0 1px 6px rgba(0,0,0,.03)}
-.card-img{width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px}
-.card-accent{border-left:4px solid var(--blue);padding-left:16px}
-
-/* Section */
-.sec{font-size:11px;font-weight:800;color:var(--tx2);letter-spacing:1.5px;text-transform:uppercase;margin:18px 0 10px}
-
-/* Stats row */
+/* Stats */
 .stats{display:flex;gap:8px;margin-bottom:16px}
-.stat{flex:1;background:var(--sf);border-radius:14px;padding:14px;text-align:center;border:1.5px solid var(--bd)}
-.stat .n{font-size:22px;font-weight:900}
-.stat .l{font-size:10px;font-weight:700;color:var(--tx2);margin-top:2px}
+.stat{flex:1;background:var(--card);border-radius:16px;padding:14px 10px;text-align:center;border:1px solid var(--bd)}
+.stat .n{font-size:20px;font-weight:900}
+.stat .l{font-size:10px;color:var(--tx2);margin-top:2px;font-weight:600}
 
-/* Buttons */
-.btn{padding:14px 24px;border:none;border-radius:14px;font-family:var(--f1);font-size:15px;font-weight:800;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:8px;justify-content:center}
-.btn:active{transform:scale(.97)}
-.btn-blue{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(74,127,212,.25)}
-.btn-green{background:var(--green);color:#fff}
-.btn-out{background:none;border:2px solid var(--bd);color:var(--tx2)}
-.btn-sm{padding:10px 16px;font-size:13px;border-radius:10px}
-.btn-full{width:100%}
+/* Unit card */
+.uc{display:flex;align-items:center;gap:14px;padding:16px;background:var(--card);border:1px solid var(--bd);border-radius:16px;margin-bottom:8px;cursor:pointer;transition:.15s}
+.uc:hover{border-color:var(--blue);transform:translateY(-1px)}
+.uc.done{border-color:var(--green);background:rgba(52,211,153,.08)}
+.uc-n{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0;color:#fff}
+.uc-i{flex:1;min-width:0}
+.uc-i h4{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uc-i p{font-size:12px;color:var(--tx2);margin-top:2px}
 
-/* Word row */
-.wrow{display:flex;align-items:center;gap:12px;padding:14px;background:var(--sf);border-radius:14px;margin-bottom:6px;cursor:pointer;border:1.5px solid transparent;transition:.15s}
-.wrow:hover{border-color:var(--blue);background:var(--blue-l)}
-.wrow:active{transform:scale(.98)}
-.wrow .fr{font-size:17px;font-weight:800;color:var(--tx)}
-.wrow .en{font-size:13px;color:var(--tx2)}
-.wrow .tip{font-size:11px;color:var(--amber);margin-top:2px}
+/* Tabs */
+.tabs{display:flex;gap:3px;background:var(--bg);border-radius:14px;padding:3px;margin-bottom:16px}
+.tabs button{flex:1;padding:11px;border:none;border-radius:12px;font-family:var(--f1);font-size:13px;font-weight:700;cursor:pointer;background:none;color:var(--tx3)}
+.tabs button.on{background:var(--card);color:var(--gold)}
 
-/* Lesson tab pills */
-.ltabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;-webkit-overflow-scrolling:touch}
-.ltabs::-webkit-scrollbar{height:0}
-.ltab{flex-shrink:0;padding:10px 16px;border-radius:12px;border:2px solid var(--bd);background:var(--sf);font-family:var(--f1);font-size:13px;font-weight:700;cursor:pointer;color:var(--tx2)}
-.ltab.on{border-color:var(--blue);background:var(--blue-l);color:var(--blue)}
-.ltab.done{border-color:var(--green);background:var(--green-l);color:var(--green)}
+/* Vocab */
+.vr{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;margin-bottom:5px;cursor:pointer;transition:.15s;background:var(--card2);border:1px solid transparent}
+.vr:hover{border-color:var(--blue)}
+.vr:active{transform:scale(.98)}
+.vr .fr{font-size:15px;font-weight:700}
+.vr .en{font-size:12px;color:var(--tx2)}
+.vr .tip{font-size:11px;color:var(--gold);margin-top:2px}
 
-/* Grammar box */
-.gram{background:linear-gradient(135deg,var(--blue-l),var(--purple-l));border:1.5px solid #c8d4e8;border-radius:16px;padding:18px;margin-bottom:14px;font-size:14px;line-height:1.8}
+/* Grammar */
+.gram{background:linear-gradient(135deg,rgba(96,165,250,.1),rgba(167,139,250,.1));border:1px solid rgba(96,165,250,.2);border-radius:16px;padding:18px;margin-bottom:14px;font-size:14px;line-height:1.85}
 .gram b{color:var(--blue)}
 
-/* Culture card */
-.culture{position:relative;overflow:hidden;border-radius:16px;margin-bottom:14px}
-.culture img{width:100%;height:160px;object-fit:cover}
-.culture .overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:14px 16px}
-.culture .overlay h4{color:#fff;font-size:14px;font-weight:800}
-.culture .overlay p{color:rgba(255,255,255,.8);font-size:12px;margin-top:2px}
+/* Culture */
+.cult{background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(251,146,60,.1));border:1px solid rgba(251,191,36,.2);border-radius:16px;padding:16px;margin-bottom:14px}
+.cult h4{font-size:13px;font-weight:800;color:var(--gold);margin-bottom:6px}
+.cult p{font-size:13px;line-height:1.7;color:var(--tx)}
 
-/* Quiz */
-.qopt{display:block;width:100%;padding:14px 18px;margin-bottom:8px;border-radius:14px;border:2px solid var(--bd);background:var(--sf);font-family:var(--f1);font-size:15px;font-weight:600;color:var(--tx);cursor:pointer;text-align:left;transition:.15s}
-.qopt:hover{border-color:var(--blue);background:var(--blue-l)}
-.qopt.ok{border-color:var(--green)!important;background:var(--green-l)!important;color:#2d7a3e!important}
-.qopt.no{border-color:var(--red)!important;background:var(--red-l)!important;color:var(--red)!important}
-.qinp{width:100%;padding:14px;border-radius:14px;border:2px solid var(--bd);font-family:var(--f1);font-size:15px;color:var(--tx);text-align:center;outline:none;background:var(--sf)}
-.qinp:focus{border-color:var(--blue)}
-.qresult{padding:14px;border-radius:14px;font-size:14px;font-weight:700;text-align:center;margin-top:10px}
-.qresult.ok{background:var(--green-l);color:#2d7a3e;border:1.5px solid #b8dcbe}
-.qresult.no{background:var(--red-l);color:var(--red);border:1.5px solid #e0b0b0}
+/* Exercise */
+.exb{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;margin-bottom:12px}
+.ext{font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:1px;text-align:center;margin-bottom:10px}
+.exq{font-size:22px;font-weight:900;text-align:center;margin:10px 0;line-height:1.3}
+.exo{display:block;width:100%;padding:14px 18px;margin-bottom:8px;border-radius:14px;border:2px solid var(--bd);background:var(--card2);font-family:var(--f1);font-size:15px;font-weight:600;color:var(--tx);cursor:pointer;text-align:left;transition:.15s}
+.exo:hover{border-color:var(--blue)}
+.exo.ok{border-color:var(--green)!important;background:rgba(52,211,153,.15)!important;color:var(--green)!important}
+.exo.no{border-color:var(--red)!important;background:rgba(248,113,113,.15)!important;color:var(--red)!important}
+.exi{width:100%;padding:14px;border-radius:14px;border:2px solid var(--bd);font-family:var(--f1);font-size:16px;text-align:center;outline:none;background:var(--card2);color:var(--tx)}
+.exi:focus{border-color:var(--blue)}
+.efb{padding:14px;border-radius:14px;font-weight:700;text-align:center;margin-top:10px}
+.efb.ok{background:rgba(52,211,153,.15);color:var(--green);border:1px solid rgba(52,211,153,.3)}
+.efb.no{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3)}
+.pb{height:8px;background:var(--bd);border-radius:4px;overflow:hidden;margin:8px 0}
+.pfl{height:100%;border-radius:4px;transition:width .5s}
 
-/* Progress */
-.pbar{height:8px;background:var(--bd);border-radius:5px;overflow:hidden;margin:8px 0}
-.pfill{height:100%;border-radius:5px;transition:width .5s}
-
-/* Podcast card */
-.pod{display:flex;gap:14px;padding:16px;background:var(--sf);border-radius:16px;margin-bottom:10px;border:1.5px solid var(--bd);align-items:center;cursor:pointer;transition:.15s}
-.pod:hover{border-color:var(--blue)}
-.pod .pod-img{width:60px;height:60px;border-radius:12px;object-fit:cover;flex-shrink:0}
-.pod .pod-info h4{font-size:14px;font-weight:800;color:var(--tx)}
-.pod .pod-info p{font-size:12px;color:var(--tx2);margin-top:2px}
-.pod .pod-info .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-top:4px}
+/* Buttons */
+.btn{padding:14px 24px;border:none;border-radius:14px;font-family:var(--f1);font-size:15px;font-weight:800;cursor:pointer;transition:.15s;width:100%;text-align:center;display:block}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:var(--gold);color:#0c0f1a}
+.btn-green{background:var(--green);color:#0c0f1a}
+.btn-blue{background:var(--blue);color:#0c0f1a}
+.btn-out{background:none;border:2px solid var(--bd);color:var(--tx2)}
+.btn-sm{padding:10px 16px;font-size:13px;width:auto;display:inline-block}
 
 /* Chat */
-.chat-box{background:#f0ece4;border-radius:14px;padding:12px;min-height:220px;max-height:340px;overflow-y:auto;margin-bottom:10px}
-.cmsg{display:flex;margin-bottom:10px}.cmsg.me{justify-content:flex-end}
-.cbub{max-width:82%;padding:12px 16px;border-radius:18px;font-size:14px;line-height:1.65;white-space:pre-line}
-.cbub.t{background:var(--sf);border:1.5px solid var(--bd);border-bottom-left-radius:4px}
-.cbub.u{background:var(--blue);color:#fff;border-bottom-right-radius:4px}
-.cinp{display:flex;gap:8px;align-items:center}
-.cinp input{flex:1;padding:12px 16px;border-radius:14px;border:1.5px solid var(--bd);font-family:var(--f1);font-size:14px;background:var(--sf);color:var(--tx);outline:none}
-.cinp input:focus{border-color:var(--blue)}
-.mic-btn{width:42px;height:42px;border-radius:50%;background:var(--red-l);border:2px solid #daa;color:var(--red);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.mic-btn.on{background:#f0b8b8;border-color:var(--red);animation:pulse 1s infinite}
-.send-btn{width:42px;height:42px;border-radius:50%;background:var(--blue);border:none;color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.chips{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap}
-.chip{padding:6px 12px;border-radius:20px;border:1.5px solid var(--bd);background:var(--sf);font-family:var(--f1);font-size:12px;font-weight:700;color:var(--tx2);cursor:pointer}
-.chip:hover{border-color:var(--blue);color:var(--blue)}
-.lang-sw{display:flex;gap:4px;justify-content:center;margin-bottom:8px}
-.lang-sw button{padding:4px 10px;border-radius:6px;border:1.5px solid var(--bd);background:var(--sf);font-family:var(--f1);font-size:11px;font-weight:700;color:var(--tx2);cursor:pointer}
-.lang-sw button.on{border-color:var(--blue);background:var(--blue-l);color:var(--blue)}
+.chatb{background:var(--bg);border-radius:14px;padding:12px;min-height:200px;max-height:320px;overflow-y:auto;margin-bottom:10px}
+.cm{display:flex;margin-bottom:8px}.cm.me{justify-content:flex-end}
+.cb{max-width:82%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.65;white-space:pre-line}
+.cb.ai{background:var(--card2);border:1px solid var(--bd);border-bottom-left-radius:4px}
+.cb.u{background:var(--blue);color:#0c0f1a;font-weight:600;border-bottom-right-radius:4px}
+.crow{display:flex;gap:8px;align-items:center}
+.crow input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid var(--bd);font-family:var(--f1);font-size:14px;outline:none;background:var(--card);color:var(--tx)}
+.crow input:focus{border-color:var(--blue)}
+.mbtn{width:40px;height:40px;border-radius:50%;background:rgba(248,113,113,.15);border:2px solid rgba(248,113,113,.3);color:var(--red);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mbtn.on{background:rgba(248,113,113,.3);border-color:var(--red)}
+.sbtn{width:40px;height:40px;border-radius:50%;background:var(--blue);border:none;color:#0c0f1a;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:900}
+.chips{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+.chips button{padding:6px 12px;border-radius:14px;border:1px solid var(--bd);background:var(--card);font-family:var(--f1);font-size:11px;font-weight:700;color:var(--tx2);cursor:pointer}
+.chips button:hover{border-color:var(--gold);color:var(--gold)}
+.lr{display:flex;gap:4px;justify-content:center;margin-bottom:8px}
+.lr button{padding:3px 8px;border-radius:6px;border:1px solid var(--bd);background:var(--card);font-family:var(--f1);font-size:11px;font-weight:700;color:var(--tx2);cursor:pointer}
+.lr button.on{border-color:var(--gold);background:rgba(251,191,36,.1);color:var(--gold)}
+.bk{background:none;border:none;font-family:var(--f1);font-size:14px;font-weight:700;color:var(--blue);cursor:pointer;padding:0;margin-bottom:14px}
 
-/* Infographic */
-.infog{background:linear-gradient(135deg,var(--amber-l),#fef8ee);border:1.5px solid #e8d8a8;border-radius:16px;padding:18px;margin-bottom:14px}
-.infog h4{font-size:14px;font-weight:800;color:var(--amber);margin-bottom:8px}
-.infog .row{display:flex;justify-content:space-around;text-align:center;margin-top:10px}
-.infog .row div{flex:1}
-.infog .row .big{font-size:22px;font-weight:900;color:var(--tx)}
-.infog .row .sm{font-size:11px;color:var(--tx2);margin-top:2px}
+/* Section */
+.sec{font-size:11px;font-weight:800;color:var(--tx2);letter-spacing:1.5px;text-transform:uppercase;margin:16px 0 10px}
 
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* Streaks / Achievements */
+.ach{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px}
+.ach::-webkit-scrollbar{height:0}
+.ach-item{flex-shrink:0;width:60px;text-align:center;padding:10px 4px;border-radius:14px;background:var(--card);border:1px solid var(--bd)}
+.ach-item.earned{border-color:var(--gold);background:rgba(251,191,36,.08)}
+.ach-item .emoji{font-size:24px}
+.ach-item .alabel{font-size:9px;color:var(--tx2);margin-top:4px;font-weight:700}
+
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
+</head>
 <body>
 <div id="app"></div>
-
-<!-- Bottom Navigation -->
-<div class="bnav" id="bnav">
-  <button class="on" onclick="go('home')"><span class="ico">🏠</span>Home</button>
-  <button onclick="go('learn')"><span class="ico">📖</span>Learn</button>
-  <button onclick="go('quiz')"><span class="ico">🎯</span>Quiz</button>
-  <button onclick="go('listen')"><span class="ico">🎵</span>Music</button>
-  <button onclick="go('chat')"><span class="ico">💬</span>Chat</button>
+<div class="bnav">
+  <button class="on" onclick="go('home')"><span class="ic">🏠</span>Home</button>
+  <button onclick="go('practice')"><span class="ic">🎯</span>Practice</button>
+  <button onclick="go('tutor')"><span class="ic">💬</span>Tutor</button>
 </div>
-
 <script>
-/* ═══════════════════════════════════════════
-   LE PROFESSEUR — COMPREHENSIVE FRENCH TUTOR
-   ═══════════════════════════════════════════ */
+// ═══ TTS ═══
+let frV=null;(function(){if(!window.speechSynthesis)return;const l=()=>{const v=speechSynthesis.getVoices(),f=v.filter(x=>x.lang.startsWith('fr'));if(f.length)frV=f.find(x=>x.name.includes('Natural'))||f.find(x=>x.name.includes('Google'))||f[0]};l();speechSynthesis.onvoiceschanged=l})();
+function say(t,lang,r){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=lang||'fr-FR';u.rate=r||.85;if((lang||'fr-FR').startsWith('fr')&&frV)u.voice=frV;speechSynthesis.speak(u)}
 
-// ── TTS ──
-let frV=null;
-function initTTS(){if(!window.speechSynthesis)return;const l=()=>{const v=speechSynthesis.getVoices(),f=v.filter(x=>x.lang.startsWith('fr'));if(f.length)frV=f.find(x=>x.name.includes('Natural'))||f.find(x=>x.name.includes('Google'))||f[0]};l();speechSynthesis.onvoiceschanged=l}
-function say(t,lang='fr-FR',r=.85){if(!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=lang;u.rate=r;if(lang.startsWith('fr')&&frV)u.voice=frV;speechSynthesis.speak(u)}
-initTTS();
+// ═══ STATE ═══
+let S;try{S=JSON.parse(localStorage.getItem('lpX'))||{}}catch(e){S={}}
+let xp=S.xp||0,streak=S.stk||1,done=S.done||[],pg='home',cLv=0,cU=null,uTab='lesson',qI=0,qA=[];
+let mL='en-US',cM=[{w:'ai',t:'Bonjour! I\'m your French tutor. Ask me anything in English, Hindi, or French!'}];
+function sv(){localStorage.setItem('lpX',JSON.stringify({xp,stk:streak,done}))}
 
-// ── STATE ──
-let st;try{st=JSON.parse(localStorage.getItem('lp8'))||{}}catch(e){st={}}
-let xp=st.xp||0,streak=st.stk||1,done=st.done||[],curLesson=0,curPage='home',quizIdx=0,quizQs=[],micLang='en-US';
-function save(){localStorage.setItem('lp8',JSON.stringify({xp,stk:streak,done}))}
-
-// ── IMAGES (Unsplash free) ──
-const IMG={
-  hero:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80',
-  paris:'https://images.unsplash.com/photo-1549144511-f099e773c147?w=400&q=80',
-  cafe:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80',
-  food:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80',
-  train:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80',
-  market:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80',
-  books:'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&q=80',
-  family:'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&q=80',
-  travel:'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=400&q=80',
-  colors:'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&q=80',
-  time:'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80',
-  podcast1:'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=200&q=80',
-  podcast2:'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=200&q=80',
-  podcast3:'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200&q=80',
+// ═══ IMAGES (Unsplash free-to-use) ═══
+const I={
+  paris:'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80',
+  cafe:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80',
+  food:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80',
+  market:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80',
+  train:'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80',
+  family:'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=600&q=80',
+  books:'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&q=80',
+  fashion:'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&q=80',
+  doctor:'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80',
+  office:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80',
+  debate:'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&q=80',
+  nature:'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80',
+  wine:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80',
+  city:'https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&q=80',
+  art:'https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=600&q=80',
+  school:'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80',
 };
 
-// ── LESSONS DATA ──
-const L=[
-{id:1,t:"Greetings & Politeness",img:IMG.paris,
-g:'In France, <b>always say Bonjour</b> when entering any shop, restaurant, or meeting someone. Skipping it is very rude! Use <b>Bonjour</b> during the day, <b>Bonsoir</b> after ~6pm. <b>Salut</b> is casual — friends only.',
-culture:{img:IMG.paris,title:"La Bise — The French Cheek Kiss",text:"In France, friends greet with kisses on the cheek (la bise). The number varies by region — 2 in Paris, 3 in the south!"},
-w:[
-  {fr:"Bonjour",en:"Hello / Good day",tip:"THE most important French word"},
-  {fr:"Bonsoir",en:"Good evening",tip:"Used after ~6pm"},
-  {fr:"Salut",en:"Hi (casual)",tip:"Only for friends, never in shops!"},
-  {fr:"Au revoir",en:"Goodbye",tip:"Literally 'until seeing again'"},
-  {fr:"Merci",en:"Thank you",tip:"Add 'beaucoup' = thank you very much"},
-  {fr:"S'il vous plaît",en:"Please (formal)",tip:"S'il te plaît = informal"},
-  {fr:"De rien",en:"You're welcome",tip:"Literally 'of nothing'"},
-  {fr:"Excusez-moi",en:"Excuse me",tip:"Also used to get attention"},
-  {fr:"Pardon",en:"Sorry / Pardon",tip:"When bumping into someone"},
-  {fr:"Comment allez-vous?",en:"How are you? (formal)",tip:"For strangers & elders"},
-  {fr:"Ça va?",en:"How's it going?",tip:"Casual. Response: Ça va bien!"},
-  {fr:"Très bien, merci",en:"Very well, thanks",tip:"Standard polite response"},
-]},
-{id:2,t:"Introductions & Identity",img:IMG.family,
-g:'French uses <b>reflexive verbs</b> for names: <b>Je m\'appelle</b> = "I call myself". Use <b>tu</b> with friends, <b>vous</b> with strangers. For age, use <b>avoir</b> (to have): <b>J\'ai 25 ans</b> = "I have 25 years".',
-culture:{img:IMG.family,title:"Tu vs Vous — The Social Code",text:"Using 'tu' with a stranger can be offensive. Always start with 'vous' and wait until they suggest 'tu'. Among young people, 'tu' is more common."},
-w:[
-  {fr:"Je m'appelle...",en:"My name is...",tip:"Literally: I call myself"},
-  {fr:"Comment vous appelez-vous?",en:"What's your name? (formal)",tip:"For strangers"},
-  {fr:"Comment tu t'appelles?",en:"What's your name? (casual)",tip:"For friends"},
-  {fr:"Enchanté(e)",en:"Nice to meet you",tip:"Add 'e' if you're female"},
-  {fr:"J'ai ... ans",en:"I am ... years old",tip:"French uses 'have' not 'am'"},
-  {fr:"J'habite à...",en:"I live in...",tip:"J'habite à Paris"},
-  {fr:"Je suis...",en:"I am...",tip:"Je suis étudiant = I'm a student"},
-  {fr:"Je viens de...",en:"I come from...",tip:"Je viens de l'Inde = I'm from India"},
-  {fr:"Je parle un peu français",en:"I speak a little French",tip:"Great icebreaker!"},
-  {fr:"Quelle est votre profession?",en:"What's your job?",tip:"Formal question"},
-]},
-{id:3,t:"Numbers & Counting",img:IMG.market,
-g:'Numbers 1-16 are unique words. 17-19 combine: <b>dix-sept</b> (10+7). <b>Vingt</b> = 20. Fun: 70 = <b>soixante-dix</b> (60+10), 80 = <b>quatre-vingts</b> (4×20), 90 = <b>quatre-vingt-dix</b> (4×20+10)!',
-culture:{img:IMG.market,title:"French Math is Different!",text:"The French number system above 60 uses a base-20 system inherited from the Celts. In Belgium and Switzerland, they use septante (70) and nonante (90) instead!"},
-w:[
-  {fr:"Un",en:"1",tip:""},{fr:"Deux",en:"2",tip:""},{fr:"Trois",en:"3",tip:""},{fr:"Quatre",en:"4",tip:""},{fr:"Cinq",en:"5",tip:"Pronounced 'sank'"},
-  {fr:"Six",en:"6",tip:"Alone: 'sees'"},{fr:"Sept",en:"7",tip:""},{fr:"Huit",en:"8",tip:""},{fr:"Neuf",en:"9",tip:""},{fr:"Dix",en:"10",tip:""},
-  {fr:"Vingt",en:"20",tip:"Silent 'gt'"},{fr:"Trente",en:"30",tip:""},{fr:"Quarante",en:"40",tip:""},{fr:"Cinquante",en:"50",tip:""},{fr:"Cent",en:"100",tip:""},
-]},
-{id:4,t:"At the Café",img:IMG.cafe,
-g:'<b>Je voudrais</b> = "I would like" — the magic ordering phrase. More polite than <b>je veux</b> (I want). French nouns have gender: <b>un</b> (masculine) / <b>une</b> (feminine). Always say Bonjour FIRST!',
-culture:{img:IMG.cafe,title:"French Café Culture",text:"In France, café means both the drink AND the place. Sitting on a terrace watching people go by is a national pastime. The price of coffee is often higher if you sit at a table vs. standing at the bar!"},
-w:[
-  {fr:"Je voudrais...",en:"I would like...",tip:"THE ordering phrase"},
-  {fr:"Un café",en:"A coffee",tip:"Espresso by default in France"},
-  {fr:"Un café crème",en:"Coffee with cream",tip:"Like a latte"},
-  {fr:"Un croissant",en:"A croissant",tip:"Silent final 'nt'"},
-  {fr:"Un verre d'eau",en:"A glass of water",tip:"Free tap water: une carafe d'eau"},
-  {fr:"L'addition, s'il vous plaît",en:"The bill, please",tip:"Essential ending phrase"},
-  {fr:"C'est combien?",en:"How much is it?",tip:"Shopping essential"},
-  {fr:"Un thé",en:"A tea",tip:""},{fr:"Un jus d'orange",en:"Orange juice",tip:""},
-  {fr:"C'est délicieux!",en:"It's delicious!",tip:"Great compliment"},
-]},
-{id:5,t:"Family & Relationships",img:IMG.family,
-g:'Possessives agree with the <b>noun gender</b>, not the owner: <b>mon frère</b> (my brother), <b>ma sœur</b> (my sister), <b>mes parents</b> (my parents). Exception: <b>mon amie</b> (my female friend) — use "mon" before vowels.',
-culture:{img:IMG.family,title:"French Family Values",text:"Sunday lunch with the whole family is sacred in France. It often lasts 2-3 hours with multiple courses. Family ties are very strong, and grandparents often play a big role in childcare."},
-w:[
-  {fr:"La mère / Maman",en:"Mother / Mom",tip:""},{fr:"Le père / Papa",en:"Father / Dad",tip:""},{fr:"Le frère",en:"Brother",tip:""},{fr:"La sœur",en:"Sister",tip:""},
-  {fr:"Les parents",en:"Parents",tip:""},{fr:"Les grands-parents",en:"Grandparents",tip:""},{fr:"Le fils",en:"Son",tip:"Silent 'ls'"},{fr:"La fille",en:"Daughter / Girl",tip:""},
-  {fr:"Le mari",en:"Husband",tip:""},{fr:"La femme",en:"Wife / Woman",tip:"Context-dependent"},
-]},
-{id:6,t:"Colors, Clothes & Shopping",img:IMG.colors,
-g:'Colors go <b>after</b> the noun: <b>une robe rouge</b> (a red dress). Most agree in gender: <b>vert/verte</b>. Some never change: <b>orange, marron</b>. To shop: <b>Je cherche...</b> (I\'m looking for...), <b>Quelle taille?</b> (What size?).',
-culture:{img:IMG.colors,title:"French Fashion",text:"France is the world capital of fashion. Parisians are known for their effortless style — 'less is more'. Classic French wardrobe: une marinière (striped shirt), un béret, une écharpe (scarf)."},
-w:[
-  {fr:"Rouge",en:"Red",tip:""},{fr:"Bleu(e)",en:"Blue",tip:""},{fr:"Vert(e)",en:"Green",tip:""},{fr:"Noir(e)",en:"Black",tip:""},{fr:"Blanc/Blanche",en:"White",tip:""},
-  {fr:"Une robe",en:"A dress",tip:""},{fr:"Un pantalon",en:"Pants",tip:""},{fr:"Des chaussures",en:"Shoes",tip:""},{fr:"Je cherche...",en:"I'm looking for...",tip:""},{fr:"Trop cher!",en:"Too expensive!",tip:"Essential haggling"},
-]},
-{id:7,t:"Food & Restaurant",img:IMG.food,
-g:'French meals: <b>l\'entrée</b> (starter), <b>le plat principal</b> (main), <b>le dessert</b>. Order with: <b>Je vais prendre...</b> (I\'ll have...). Waiters say <b>Vous avez choisi?</b> (Have you chosen?). Tip is included in France!',
-culture:{img:IMG.food,title:"The Art of French Dining",text:"A French dinner can last 2+ hours. Courses come one at a time: apéritif, entrée, plat, fromage, dessert, café, digestif. It's an experience, not just eating. Bon appétit!"},
-w:[
-  {fr:"Le menu / La carte",en:"The menu",tip:""},{fr:"L'entrée",en:"Starter",tip:"Not 'entrance'!"},{fr:"Le plat principal",en:"Main course",tip:""},
-  {fr:"Le dessert",en:"Dessert",tip:""},{fr:"Le vin",en:"Wine",tip:""},{fr:"Le pain",en:"Bread",tip:"Always free on the table"},
-  {fr:"Le fromage",en:"Cheese",tip:"France: 400+ types!"},{fr:"Bon appétit!",en:"Enjoy your meal!",tip:""},{fr:"Délicieux!",en:"Delicious!",tip:""},{fr:"L'addition",en:"The bill",tip:""},
-]},
-{id:8,t:"Directions & Getting Around",img:IMG.travel,
-g:'Imperative for directions: <b>Tournez à gauche!</b> (Turn left!). Prepositions: <b>devant</b> (in front), <b>derrière</b> (behind), <b>à côté de</b> (next to), <b>entre</b> (between). Ask: <b>Où est...?</b> (Where is...?)',
-culture:{img:IMG.travel,title:"Getting Around Paris",text:"The Paris Métro has 16 lines and 300+ stations. Buy a 'carnet' of 10 tickets for savings. Parisians walk FAST — stay right on escalators, left is for walkers!"},
-w:[
-  {fr:"Où est...?",en:"Where is...?",tip:"Essential question"},{fr:"Tout droit",en:"Straight ahead",tip:""},{fr:"À gauche",en:"To the left",tip:""},{fr:"À droite",en:"To the right",tip:""},
-  {fr:"Tournez",en:"Turn",tip:""},{fr:"Continuez",en:"Continue",tip:""},{fr:"Près de",en:"Near",tip:""},{fr:"Loin de",en:"Far from",tip:""},
-  {fr:"Le métro",en:"The subway",tip:""},{fr:"L'arrêt de bus",en:"Bus stop",tip:""},
-]},
-{id:9,t:"Time, Days & Weather",img:IMG.time,
-g:'French uses <b>24-hour time</b>: <b>14h</b> = 2 PM. Ask: <b>Quelle heure est-il?</b>. Days aren\'t capitalized. Weather: <b>Il fait beau</b> (nice), <b>Il pleut</b> (raining), <b>Il fait froid</b> (cold).',
-culture:{img:IMG.time,title:"French Daily Rhythm",text:"Shops often close 12-2pm for lunch. Dinner is at 8pm, not 6pm! Sundays most shops are closed. August is vacation month — many Parisians leave the city!"},
-w:[
-  {fr:"Quelle heure est-il?",en:"What time is it?",tip:""},{fr:"Il est midi",en:"It's noon",tip:""},{fr:"Lundi",en:"Monday",tip:"Not capitalized"},{fr:"Mardi",en:"Tuesday",tip:""},
-  {fr:"Mercredi",en:"Wednesday",tip:""},{fr:"Jeudi",en:"Thursday",tip:""},{fr:"Vendredi",en:"Friday",tip:""},{fr:"Samedi",en:"Saturday",tip:""},{fr:"Dimanche",en:"Sunday",tip:""},
-  {fr:"Il fait beau",en:"The weather is nice",tip:""},{fr:"Il pleut",en:"It's raining",tip:""},
-]},
-{id:10,t:"Travel & Transport",img:IMG.train,
-g:'Key verbs: <b>aller</b> (to go), <b>prendre</b> (to take), <b>arriver</b> (to arrive). <b>Un billet</b> = ticket, <b>aller-retour</b> = round trip. At the station: <b>composter</b> = validate your ticket!',
-culture:{img:IMG.train,title:"TGV — World's Fastest Trains",text:"France's TGV trains reach 320 km/h! Paris to Lyon takes just 2 hours. Book early on SNCF.com for the cheapest tickets. Always validate your ticket before boarding!"},
-w:[
-  {fr:"Un billet",en:"A ticket",tip:""},{fr:"Aller-retour",en:"Round trip",tip:""},{fr:"Aller simple",en:"One way",tip:""},
-  {fr:"La gare",en:"Train station",tip:""},{fr:"L'aéroport",en:"Airport",tip:""},{fr:"Le quai",en:"Platform",tip:""},
-  {fr:"Le passeport",en:"Passport",tip:""},{fr:"La valise",en:"Suitcase",tip:""},{fr:"En retard",en:"Late / Delayed",tip:""},{fr:"À quelle heure?",en:"At what time?",tip:""},
-]},
+// ═══ LEVEL CONFIG ═══
+const LG=['linear-gradient(135deg,#059669,#10b981)','linear-gradient(135deg,#0d9488,#14b8a6)','linear-gradient(135deg,#2563eb,#3b82f6)','linear-gradient(135deg,#4338ca,#6366f1)','linear-gradient(135deg,#7c3aed,#8b5cf6)','linear-gradient(135deg,#be123c,#e11d48)'];
+const LN=['A1 — Beginner','A2 — Elementary','B1 — Intermediate','B2 — Upper Intermediate','C1 — Advanced','C2 — Mastery'];
+const LD=['Essential words, greetings, daily life basics','Travel, health, shopping, past tense','Opinions, complex grammar, professional life','Debate, media, environment, advanced tenses','Registers, idioms, academic writing','Literature, dissertation, near-native fluency'];
+const LI=[I.paris,I.cafe,I.train,I.debate,I.art,I.books];
+
+// ═══ CURRICULUM — 28 UNITS, 1000+ WORDS ═══
+const U=[
+// ═══ A1 (8 units) ═══
+{lv:0,t:"Greetings & Politeness",img:I.paris,g:"<b>Bonjour</b> = daytime hello. <b>Bonsoir</b> = evening. <b>Salut</b> = casual hi. Always greet before asking anything — skipping is rude in France!",c:"French politeness is serious. You say Bonjour entering any shop, elevator, or interaction. Merci and S'il vous plait in every exchange is expected.",
+w:[{f:"Bonjour",e:"Hello",t:"Most important word"},{f:"Bonsoir",e:"Good evening",t:"After 6pm"},{f:"Salut",e:"Hi (casual)",t:"Friends only"},{f:"Au revoir",e:"Goodbye",t:""},{f:"Merci",e:"Thank you",t:""},{f:"Merci beaucoup",e:"Thank you very much",t:""},{f:"S'il vous plait",e:"Please (formal)",t:""},{f:"S'il te plait",e:"Please (casual)",t:""},{f:"De rien",e:"You're welcome",t:""},{f:"Excusez-moi",e:"Excuse me",t:""},{f:"Pardon",e:"Sorry",t:""},{f:"Comment allez-vous?",e:"How are you? (formal)",t:""},{f:"Ca va?",e:"How's it going?",t:""},{f:"Tres bien",e:"Very well",t:""},{f:"Comme ci comme ca",e:"So-so",t:""},{f:"Pas mal",e:"Not bad",t:""},{f:"Bonne journee",e:"Have a good day",t:""},{f:"Bonne soiree",e:"Have a good evening",t:""},{f:"Bonne nuit",e:"Good night",t:""},{f:"A bientot",e:"See you soon",t:""},{f:"A demain",e:"See you tomorrow",t:""},{f:"A plus tard",e:"See you later",t:""},{f:"Bienvenue",e:"Welcome",t:""},{f:"Monsieur",e:"Sir/Mr.",t:""},{f:"Madame",e:"Ma'am/Mrs.",t:""},{f:"Mademoiselle",e:"Miss",t:"Less used now"},{f:"Je vous en prie",e:"You're welcome (formal)",t:""},{f:"Il n'y a pas de quoi",e:"Don't mention it",t:""},{f:"Avec plaisir",e:"With pleasure",t:""},{f:"Enchante(e)",e:"Pleased to meet you",t:""}]},
+
+{lv:0,t:"Introductions & Identity",img:I.family,g:"<b>Je m'appelle</b> = My name is (reflexive verb). Use <b>tu</b> with friends, <b>vous</b> with strangers. Age uses <b>avoir</b>: J'ai 25 ans = I have 25 years.",c:"The tu/vous distinction is crucial. Using tu with a stranger can offend. Always start with vous.",
+w:[{f:"Je m'appelle...",e:"My name is...",t:""},{f:"Comment vous appelez-vous?",e:"What's your name? (formal)",t:""},{f:"Comment tu t'appelles?",e:"What's your name? (casual)",t:""},{f:"J'ai ... ans",e:"I am ... years old",t:""},{f:"J'habite a...",e:"I live in...",t:""},{f:"Je viens de...",e:"I come from...",t:""},{f:"Je suis...",e:"I am...",t:""},{f:"Je suis indien(ne)",e:"I am Indian",t:""},{f:"Je suis etudiant(e)",e:"I am a student",t:""},{f:"Je suis marie(e)",e:"I am married",t:""},{f:"Je suis celibataire",e:"I am single",t:""},{f:"Je parle anglais",e:"I speak English",t:""},{f:"Je parle un peu francais",e:"I speak a little French",t:""},{f:"Je ne comprends pas",e:"I don't understand",t:""},{f:"Pouvez-vous repeter?",e:"Can you repeat?",t:""},{f:"Plus lentement",e:"More slowly",t:""},{f:"Quelle est votre profession?",e:"What's your job?",t:""},{f:"Quel age avez-vous?",e:"How old are you?",t:""},{f:"D'ou venez-vous?",e:"Where are you from?",t:""},{f:"Et vous?",e:"And you? (formal)",t:""},{f:"Et toi?",e:"And you? (casual)",t:""},{f:"Je suis professeur",e:"I am a teacher",t:""},{f:"Je suis medecin",e:"I am a doctor",t:""},{f:"Je suis ingenieur",e:"I am an engineer",t:""},{f:"Nationalite",e:"Nationality",t:""},{f:"Francais(e)",e:"French",t:""},{f:"Anglais(e)",e:"English",t:""}]},
+
+{lv:0,t:"Numbers, Days & Time",img:I.market,g:"Numbers 1-16 unique. 17-19 combine (dix-sept). 70=soixante-dix(60+10), 80=quatre-vingts(4x20). French uses 24h time: 14h=2PM.",c:"Phone numbers read in pairs. Days/months NOT capitalized. Week starts Monday.",
+w:[{f:"Un",e:"1",t:""},{f:"Deux",e:"2",t:""},{f:"Trois",e:"3",t:""},{f:"Quatre",e:"4",t:""},{f:"Cinq",e:"5",t:""},{f:"Six",e:"6",t:""},{f:"Sept",e:"7",t:""},{f:"Huit",e:"8",t:""},{f:"Neuf",e:"9",t:""},{f:"Dix",e:"10",t:""},{f:"Vingt",e:"20",t:""},{f:"Trente",e:"30",t:""},{f:"Quarante",e:"40",t:""},{f:"Cinquante",e:"50",t:""},{f:"Soixante",e:"60",t:""},{f:"Cent",e:"100",t:""},{f:"Mille",e:"1000",t:""},{f:"Lundi",e:"Monday",t:""},{f:"Mardi",e:"Tuesday",t:""},{f:"Mercredi",e:"Wednesday",t:""},{f:"Jeudi",e:"Thursday",t:""},{f:"Vendredi",e:"Friday",t:""},{f:"Samedi",e:"Saturday",t:""},{f:"Dimanche",e:"Sunday",t:""},{f:"Janvier",e:"January",t:""},{f:"Fevrier",e:"February",t:""},{f:"Mars",e:"March",t:""},{f:"Avril",e:"April",t:""},{f:"Mai",e:"May",t:""},{f:"Juin",e:"June",t:""},{f:"Juillet",e:"July",t:""},{f:"Aout",e:"August",t:""},{f:"Septembre",e:"September",t:""},{f:"Octobre",e:"October",t:""},{f:"Novembre",e:"November",t:""},{f:"Decembre",e:"December",t:""},{f:"Quelle heure est-il?",e:"What time is it?",t:""},{f:"Il est midi",e:"It's noon",t:""},{f:"Il est minuit",e:"It's midnight",t:""},{f:"Aujourd'hui",e:"Today",t:""},{f:"Hier",e:"Yesterday",t:""},{f:"Demain",e:"Tomorrow",t:""},{f:"Maintenant",e:"Now",t:""},{f:"Le matin",e:"The morning",t:""},{f:"L'apres-midi",e:"The afternoon",t:""},{f:"Le soir",e:"The evening",t:""}]},
+
+{lv:0,t:"At the Cafe & Restaurant",img:I.cafe,g:"<b>Je voudrais</b> = I would like (polite ordering). Nouns have gender: <b>un</b> (masc), <b>une</b> (fem). Always say Bonjour first!",c:"A cafe in France = espresso. For latte: cafe creme. Tip is included (service compris). Standing at bar is cheaper than sitting.",
+w:[{f:"Je voudrais...",e:"I would like...",t:"The magic phrase"},{f:"Un cafe",e:"A coffee (espresso)",t:""},{f:"Un cafe creme",e:"Coffee with cream",t:""},{f:"Un the",e:"A tea",t:""},{f:"Un chocolat chaud",e:"Hot chocolate",t:""},{f:"Un verre d'eau",e:"A glass of water",t:""},{f:"Une carafe d'eau",e:"A pitcher of water",t:"Free tap water"},{f:"Un jus d'orange",e:"Orange juice",t:""},{f:"Un croissant",e:"A croissant",t:""},{f:"Un pain au chocolat",e:"Chocolate pastry",t:""},{f:"Une baguette",e:"A baguette",t:""},{f:"Un sandwich",e:"A sandwich",t:""},{f:"Une salade",e:"A salad",t:""},{f:"Une omelette",e:"An omelette",t:""},{f:"Du fromage",e:"Some cheese",t:""},{f:"Du jambon",e:"Some ham",t:""},{f:"Du beurre",e:"Some butter",t:""},{f:"Une soupe",e:"A soup",t:""},{f:"Un dessert",e:"A dessert",t:""},{f:"Une glace",e:"An ice cream",t:""},{f:"L'addition",e:"The bill",t:""},{f:"C'est combien?",e:"How much?",t:""},{f:"Avec",e:"With",t:""},{f:"Sans",e:"Without",t:""},{f:"Chaud",e:"Hot",t:""},{f:"Froid",e:"Cold",t:""},{f:"Petit",e:"Small",t:""},{f:"Grand",e:"Large",t:""},{f:"Bon appetit!",e:"Enjoy your meal!",t:""},{f:"C'est delicieux!",e:"It's delicious!",t:""},{f:"L'entree",e:"Starter",t:""},{f:"Le plat principal",e:"Main course",t:""},{f:"Le vin rouge",e:"Red wine",t:""},{f:"Le vin blanc",e:"White wine",t:""},{f:"La biere",e:"Beer",t:""},{f:"Une bouteille",e:"A bottle",t:""}]},
+
+{lv:0,t:"Family & People",img:I.family,g:"Possessives agree with NOUN gender: <b>mon</b> (my,masc), <b>ma</b> (my,fem), <b>mes</b> (my,plural). Exception: mon + fem vowel word (mon amie).",c:"Sunday family lunch is sacred — 2-3 hours, multiple courses. Grandparents play major role in childcare.",
+w:[{f:"La mere/Maman",e:"Mother/Mom",t:""},{f:"Le pere/Papa",e:"Father/Dad",t:""},{f:"Le frere",e:"Brother",t:""},{f:"La soeur",e:"Sister",t:""},{f:"Le fils",e:"Son",t:""},{f:"La fille",e:"Daughter",t:""},{f:"Les parents",e:"Parents",t:""},{f:"Les grands-parents",e:"Grandparents",t:""},{f:"L'oncle",e:"Uncle",t:""},{f:"La tante",e:"Aunt",t:""},{f:"Le cousin/La cousine",e:"Cousin (m/f)",t:""},{f:"Le neveu",e:"Nephew",t:""},{f:"La niece",e:"Niece",t:""},{f:"Le mari",e:"Husband",t:""},{f:"La femme",e:"Wife/Woman",t:""},{f:"Le bebe",e:"Baby",t:""},{f:"L'enfant",e:"Child",t:""},{f:"L'ami(e)",e:"Friend",t:""},{f:"Le voisin",e:"Neighbor",t:""},{f:"Un homme",e:"A man",t:""},{f:"Une femme",e:"A woman",t:""},{f:"Un garcon",e:"A boy",t:""},{f:"Une fille",e:"A girl",t:""},{f:"Les gens",e:"People",t:""},{f:"Mon/Ma/Mes",e:"My (m/f/pl)",t:""},{f:"Ton/Ta/Tes",e:"Your (m/f/pl)",t:""},{f:"Son/Sa/Ses",e:"His-Her (m/f/pl)",t:""}]},
+
+{lv:0,t:"Home, Places & Objects",img:I.city,g:"<b>Il y a</b> = There is/are. <b>C'est</b> = It is/This is. Articles: <b>le/la/les</b> (the), <b>un/une/des</b> (a/some). Prepositions: <b>dans</b> (in), <b>sur</b> (on), <b>sous</b> (under).",c:"French apartments are numbered by floor starting from 0 (rez-de-chaussee = ground floor, premier etage = 2nd floor American).",
+w:[{f:"La maison",e:"House",t:""},{f:"L'appartement",e:"Apartment",t:""},{f:"La chambre",e:"Bedroom",t:""},{f:"La cuisine",e:"Kitchen",t:""},{f:"La salle de bain",e:"Bathroom",t:""},{f:"Le salon",e:"Living room",t:""},{f:"La salle a manger",e:"Dining room",t:""},{f:"Le jardin",e:"Garden",t:""},{f:"La porte",e:"Door",t:""},{f:"La fenetre",e:"Window",t:""},{f:"La table",e:"Table",t:""},{f:"La chaise",e:"Chair",t:""},{f:"Le lit",e:"Bed",t:""},{f:"Le telephone",e:"Phone",t:""},{f:"L'ordinateur",e:"Computer",t:""},{f:"La cle",e:"Key",t:""},{f:"L'ecole",e:"School",t:""},{f:"L'hopital",e:"Hospital",t:""},{f:"La banque",e:"Bank",t:""},{f:"La poste",e:"Post office",t:""},{f:"Le supermarche",e:"Supermarket",t:""},{f:"La pharmacie",e:"Pharmacy",t:""},{f:"Le restaurant",e:"Restaurant",t:""},{f:"La gare",e:"Train station",t:""},{f:"L'aeroport",e:"Airport",t:""},{f:"La rue",e:"Street",t:""},{f:"La place",e:"Square/Plaza",t:""},{f:"Le parc",e:"Park",t:""},{f:"L'eglise",e:"Church",t:""},{f:"Le musee",e:"Museum",t:""}]},
+
+{lv:0,t:"Essential Verbs",img:I.school,g:"Three verb groups: <b>-er</b> (parler), <b>-ir</b> (finir), <b>-re</b> (vendre). Key irregulars: <b>etre</b> (to be), <b>avoir</b> (to have), <b>aller</b> (to go), <b>faire</b> (to do). Negation: <b>ne...pas</b> around the verb.",c:"French verbs conjugate for each person. Unlike English, you can't just add -s. The good news: 90% of French verbs are regular -er verbs!",
+w:[{f:"Etre",e:"To be",t:"je suis, tu es, il est"},{f:"Avoir",e:"To have",t:"j'ai, tu as, il a"},{f:"Aller",e:"To go",t:"je vais"},{f:"Faire",e:"To do/make",t:"je fais"},{f:"Vouloir",e:"To want",t:"je veux"},{f:"Pouvoir",e:"Can/to be able",t:"je peux"},{f:"Devoir",e:"Must/to have to",t:"je dois"},{f:"Savoir",e:"To know (fact)",t:"je sais"},{f:"Connaitre",e:"To know (person)",t:""},{f:"Parler",e:"To speak",t:""},{f:"Manger",e:"To eat",t:""},{f:"Boire",e:"To drink",t:""},{f:"Dormir",e:"To sleep",t:""},{f:"Lire",e:"To read",t:""},{f:"Ecrire",e:"To write",t:""},{f:"Ecouter",e:"To listen",t:""},{f:"Regarder",e:"To watch/look",t:""},{f:"Travailler",e:"To work",t:""},{f:"Etudier",e:"To study",t:""},{f:"Habiter",e:"To live (reside)",t:""},{f:"Aimer",e:"To love/like",t:""},{f:"Detester",e:"To hate",t:""},{f:"Acheter",e:"To buy",t:""},{f:"Vendre",e:"To sell",t:""},{f:"Donner",e:"To give",t:""},{f:"Prendre",e:"To take",t:""},{f:"Mettre",e:"To put",t:""},{f:"Ouvrir",e:"To open",t:""},{f:"Fermer",e:"To close",t:""},{f:"Commencer",e:"To begin",t:""},{f:"Finir",e:"To finish",t:""},{f:"Chercher",e:"To look for",t:""},{f:"Trouver",e:"To find",t:""},{f:"Attendre",e:"To wait",t:""},{f:"Comprendre",e:"To understand",t:""},{f:"Apprendre",e:"To learn",t:""}]},
+
+{lv:0,t:"Adjectives, Colors & Descriptions",img:I.fashion,g:"Adjectives usually come AFTER the noun: <b>une voiture rouge</b>. Some short ones come before: <b>grand, petit, bon, mauvais, beau, joli</b>. Most agree in gender: add <b>-e</b> for feminine.",c:"French has no word for 'it' as subject — everything is he (il) or she (elle) based on noun gender. A table is 'she', a book is 'he'!",
+w:[{f:"Grand(e)",e:"Big/Tall",t:""},{f:"Petit(e)",e:"Small/Short",t:""},{f:"Bon(ne)",e:"Good",t:""},{f:"Mauvais(e)",e:"Bad",t:""},{f:"Beau/Belle",e:"Beautiful",t:""},{f:"Joli(e)",e:"Pretty",t:""},{f:"Nouveau/Nouvelle",e:"New",t:""},{f:"Vieux/Vieille",e:"Old",t:""},{f:"Jeune",e:"Young",t:""},{f:"Chaud(e)",e:"Hot",t:""},{f:"Froid(e)",e:"Cold",t:""},{f:"Facile",e:"Easy",t:""},{f:"Difficile",e:"Difficult",t:""},{f:"Cher/Chere",e:"Expensive",t:""},{f:"Gratuit(e)",e:"Free (no cost)",t:""},{f:"Ouvert(e)",e:"Open",t:""},{f:"Ferme(e)",e:"Closed",t:""},{f:"Heureux/Heureuse",e:"Happy",t:""},{f:"Triste",e:"Sad",t:""},{f:"Fatigue(e)",e:"Tired",t:""},{f:"Rouge",e:"Red",t:""},{f:"Bleu(e)",e:"Blue",t:""},{f:"Vert(e)",e:"Green",t:""},{f:"Jaune",e:"Yellow",t:""},{f:"Noir(e)",e:"Black",t:""},{f:"Blanc/Blanche",e:"White",t:""},{f:"Gris(e)",e:"Gray",t:""},{f:"Rose",e:"Pink",t:""},{f:"Orange",e:"Orange",t:""},{f:"Marron",e:"Brown",t:""},{f:"Violet(te)",e:"Purple",t:""},{f:"Clair",e:"Light (color)",t:""},{f:"Fonce",e:"Dark (color)",t:""},{f:"Important(e)",e:"Important",t:""},{f:"Interessant(e)",e:"Interesting",t:""}]},
+
+// ═══ A2 (5 units) ═══
+{lv:1,t:"Food, Cooking & Meals",img:I.food,g:"French meals: <b>le petit-dejeuner</b> (breakfast), <b>le dejeuner</b> (lunch), <b>le diner</b> (dinner). Partitive articles: <b>du</b> (some, masc), <b>de la</b> (some, fem), <b>des</b> (some, plural).",c:"Lunch is the big meal in France. Dinner often at 8pm. Bread always on table, free. France has 400+ cheeses!",
+w:[{f:"Le petit-dejeuner",e:"Breakfast",t:""},{f:"Le dejeuner",e:"Lunch",t:""},{f:"Le diner",e:"Dinner",t:""},{f:"Le repas",e:"Meal",t:""},{f:"La viande",e:"Meat",t:""},{f:"Le poulet",e:"Chicken",t:""},{f:"Le poisson",e:"Fish",t:""},{f:"Les legumes",e:"Vegetables",t:""},{f:"Les fruits",e:"Fruit",t:""},{f:"Le riz",e:"Rice",t:""},{f:"Les pates",e:"Pasta",t:""},{f:"Les pommes de terre",e:"Potatoes",t:""},{f:"La pomme",e:"Apple",t:""},{f:"La banane",e:"Banana",t:""},{f:"La fraise",e:"Strawberry",t:""},{f:"Le raisin",e:"Grape",t:""},{f:"L'orange",e:"Orange",t:""},{f:"Le citron",e:"Lemon",t:""},{f:"La tomate",e:"Tomato",t:""},{f:"L'oignon",e:"Onion",t:""},{f:"L'ail",e:"Garlic",t:""},{f:"Le sel",e:"Salt",t:""},{f:"Le poivre",e:"Pepper",t:""},{f:"Le sucre",e:"Sugar",t:""},{f:"L'huile",e:"Oil",t:""},{f:"Cuisiner",e:"To cook",t:""},{f:"Couper",e:"To cut",t:""},{f:"Melanger",e:"To mix",t:""},{f:"J'ai faim",e:"I'm hungry",t:""},{f:"J'ai soif",e:"I'm thirsty",t:""},{f:"Vegetarien(ne)",e:"Vegetarian",t:""},{f:"Allergique a",e:"Allergic to",t:""},{f:"L'assiette",e:"Plate",t:""},{f:"Le couteau",e:"Knife",t:""},{f:"La fourchette",e:"Fork",t:""},{f:"La cuillere",e:"Spoon",t:""}]},
+
+{lv:1,t:"Shopping & Clothing",img:I.fashion,g:"<b>Je cherche...</b> = I'm looking for. <b>Quelle taille?</b> = What size? <b>Je peux essayer?</b> = Can I try on? Colors after noun: <b>une robe rouge</b>.",c:"France = fashion capital. Classic style: mariniere (striped shirt), quality scarf, simple ballet flats. Sales (soldes) happen twice a year, regulated by law.",
+w:[{f:"Le magasin",e:"Shop/Store",t:""},{f:"La boutique",e:"Boutique",t:""},{f:"Je cherche...",e:"I'm looking for...",t:""},{f:"C'est combien?",e:"How much?",t:""},{f:"Trop cher!",e:"Too expensive!",t:""},{f:"Pas cher",e:"Cheap",t:""},{f:"Les soldes",e:"Sales",t:""},{f:"La taille",e:"Size",t:""},{f:"Essayer",e:"To try on",t:""},{f:"Payer",e:"To pay",t:""},{f:"La carte",e:"Card",t:""},{f:"En especes",e:"In cash",t:""},{f:"Un robe",e:"Dress",t:""},{f:"Un pantalon",e:"Pants",t:""},{f:"Une jupe",e:"Skirt",t:""},{f:"Une chemise",e:"Shirt",t:""},{f:"Un pull",e:"Sweater",t:""},{f:"Un manteau",e:"Coat",t:""},{f:"Des chaussures",e:"Shoes",t:""},{f:"Des bottes",e:"Boots",t:""},{f:"Un chapeau",e:"Hat",t:""},{f:"Une ceinture",e:"Belt",t:""},{f:"Un sac",e:"Bag",t:""},{f:"Le coton",e:"Cotton",t:""},{f:"La laine",e:"Wool",t:""},{f:"Le cuir",e:"Leather",t:""},{f:"Je le prends!",e:"I'll take it!",t:""}]},
+
+{lv:1,t:"Transport & Directions",img:I.train,g:"<b>Ou est...?</b> = Where is? <b>Tournez a gauche/droite</b> = Turn left/right. <b>Tout droit</b> = Straight. Prepositions: <b>devant</b>(front), <b>derriere</b>(behind), <b>a cote de</b>(next to).",c:"Paris Metro: 16 lines, 300+ stations. TGV trains reach 320km/h. Always validate (composter) your ticket!",
+w:[{f:"Ou est...?",e:"Where is...?",t:""},{f:"Tout droit",e:"Straight ahead",t:""},{f:"A gauche",e:"Left",t:""},{f:"A droite",e:"Right",t:""},{f:"Tournez",e:"Turn",t:""},{f:"Continuez",e:"Continue",t:""},{f:"Pres de",e:"Near",t:""},{f:"Loin de",e:"Far from",t:""},{f:"Devant",e:"In front of",t:""},{f:"Derriere",e:"Behind",t:""},{f:"A cote de",e:"Next to",t:""},{f:"Entre",e:"Between",t:""},{f:"En face de",e:"Opposite",t:""},{f:"Le metro",e:"Subway",t:""},{f:"Le bus",e:"Bus",t:""},{f:"Le taxi",e:"Taxi",t:""},{f:"Le train",e:"Train",t:""},{f:"L'avion",e:"Plane",t:""},{f:"Le velo",e:"Bicycle",t:""},{f:"La voiture",e:"Car",t:""},{f:"Un billet",e:"Ticket",t:""},{f:"Aller-retour",e:"Round trip",t:""},{f:"Le quai",e:"Platform",t:""},{f:"L'arret",e:"Stop",t:""},{f:"En retard",e:"Late",t:""},{f:"A l'heure",e:"On time",t:""},{f:"Conduire",e:"To drive",t:""},{f:"Marcher",e:"To walk",t:""},{f:"La carte",e:"Map",t:""},{f:"Le plan",e:"City map",t:""}]},
+
+{lv:1,t:"Health & Body",img:I.doctor,g:"<b>J'ai mal a...</b> = I have pain in... <b>Je suis malade</b> = I am sick. <b>Depuis</b> = since. Pharmacists in France can diagnose minor ailments.",c:"French healthcare is world-class. Pharmacies (green cross sign) everywhere. Pharmacists can recommend medicine directly. Emergency: dial 15.",
+w:[{f:"J'ai mal a...",e:"I have pain in...",t:""},{f:"La tete",e:"Head",t:""},{f:"Le ventre",e:"Stomach",t:""},{f:"La gorge",e:"Throat",t:""},{f:"Le dos",e:"Back",t:""},{f:"Le bras",e:"Arm",t:""},{f:"La jambe",e:"Leg",t:""},{f:"Le pied",e:"Foot",t:""},{f:"La main",e:"Hand",t:""},{f:"Les yeux",e:"Eyes",t:""},{f:"Le nez",e:"Nose",t:""},{f:"La bouche",e:"Mouth",t:""},{f:"Les dents",e:"Teeth",t:""},{f:"L'oreille",e:"Ear",t:""},{f:"Le coeur",e:"Heart",t:""},{f:"Je suis malade",e:"I am sick",t:""},{f:"J'ai de la fievre",e:"I have a fever",t:""},{f:"J'ai froid",e:"I'm cold",t:""},{f:"J'ai chaud",e:"I'm hot",t:""},{f:"Tousser",e:"To cough",t:""},{f:"Eternuer",e:"To sneeze",t:""},{f:"Un rhume",e:"A cold",t:""},{f:"Un medicament",e:"Medicine",t:""},{f:"Une ordonnance",e:"Prescription",t:""},{f:"Le medecin",e:"Doctor",t:""},{f:"L'infirmier(e)",e:"Nurse",t:""},{f:"Depuis hier",e:"Since yesterday",t:""},{f:"La pharmacie",e:"Pharmacy",t:""},{f:"Les urgences",e:"Emergency room",t:""},{f:"Appeler le 15",e:"Call 15 (emergency)",t:""}]},
+
+{lv:1,t:"Past Tense",img:I.books,g:"<b>Passe compose</b> = main past tense. <b>Avoir</b>+past participle: <b>J'ai mange</b>=I ate. -er->-e, -ir->-i, -re->-u. Some use <b>etre</b>: movement verbs (aller, venir, partir...).",c:"The passe compose tells what happened: 'I ate, I went, I saw.' For descriptions/habits in the past, you'll learn imparfait at B1.",
+w:[{f:"J'ai mange",e:"I ate",t:""},{f:"J'ai parle",e:"I spoke",t:""},{f:"J'ai travaille",e:"I worked",t:""},{f:"J'ai achete",e:"I bought",t:""},{f:"J'ai fini",e:"I finished",t:""},{f:"J'ai compris",e:"I understood",t:""},{f:"J'ai vu",e:"I saw",t:""},{f:"J'ai fait",e:"I did/made",t:""},{f:"J'ai pris",e:"I took",t:""},{f:"J'ai dit",e:"I said",t:""},{f:"J'ai lu",e:"I read",t:""},{f:"J'ai ecrit",e:"I wrote",t:""},{f:"J'ai bu",e:"I drank",t:""},{f:"J'ai eu",e:"I had",t:""},{f:"J'ai ete",e:"I was/have been",t:""},{f:"Je suis alle(e)",e:"I went",t:"Uses etre"},{f:"Je suis venu(e)",e:"I came",t:""},{f:"Je suis parti(e)",e:"I left",t:""},{f:"Je suis arrive(e)",e:"I arrived",t:""},{f:"Je suis ne(e)",e:"I was born",t:""},{f:"Je suis reste(e)",e:"I stayed",t:""},{f:"Je suis sorti(e)",e:"I went out",t:""},{f:"Il a plu",e:"It rained",t:""},{f:"Hier",e:"Yesterday",t:""},{f:"La semaine derniere",e:"Last week",t:""},{f:"Le mois dernier",e:"Last month",t:""},{f:"L'annee derniere",e:"Last year",t:""},{f:"Deja",e:"Already",t:""},{f:"Jamais",e:"Never",t:""},{f:"Pas encore",e:"Not yet",t:""}]},
+
+// ═══ B1 (5 units) ═══
+{lv:2,t:"Opinions & Feelings",img:I.debate,g:"<b>Je pense que...</b> = I think. <b>A mon avis</b> = In my opinion. <b>Je suis d'accord</b> = I agree. Connectors: <b>parce que</b>, <b>cependant</b>, <b>d'abord/ensuite/enfin</b>.",c:"The French love debate. Disagreeing at dinner is normal, even expected. The ability to argue well is highly valued.",
+w:[{f:"Je pense que",e:"I think that",t:""},{f:"A mon avis",e:"In my opinion",t:""},{f:"Je crois que",e:"I believe that",t:""},{f:"Je suis d'accord",e:"I agree",t:""},{f:"Je ne suis pas d'accord",e:"I disagree",t:""},{f:"C'est vrai",e:"That's true",t:""},{f:"C'est faux",e:"That's false",t:""},{f:"Parce que",e:"Because",t:""},{f:"Car",e:"Because (formal)",t:""},{f:"Donc",e:"So/Therefore",t:""},{f:"Cependant",e:"However",t:""},{f:"Mais",e:"But",t:""},{f:"D'abord",e:"First",t:""},{f:"Ensuite",e:"Then",t:""},{f:"Enfin",e:"Finally",t:""},{f:"Par exemple",e:"For example",t:""},{f:"En fait",e:"In fact",t:""},{f:"Content(e)",e:"Happy",t:""},{f:"Triste",e:"Sad",t:""},{f:"En colere",e:"Angry",t:""},{f:"Inquiet(e)",e:"Worried",t:""},{f:"Surpris(e)",e:"Surprised",t:""},{f:"Decu(e)",e:"Disappointed",t:""},{f:"Fier/Fiere",e:"Proud",t:""},{f:"Avoir peur",e:"To be afraid",t:""},{f:"Avoir honte",e:"To be ashamed",t:""},{f:"Se sentir",e:"To feel",t:""},{f:"Preferer",e:"To prefer",t:""},{f:"Detester",e:"To hate",t:""},{f:"Adorer",e:"To love/adore",t:""}]},
+
+{lv:2,t:"Imparfait & Storytelling",img:I.books,g:"<b>Imparfait</b> = background, habits, descriptions in past. <b>Passe compose</b> = completed events. Together like a movie: imparfait=scenery, passe compose=action.",c:"This distinction doesn't exist in English or Hindi. Key: 'Was it ongoing/habitual (imparfait) or a specific event (passe compose)?'",
+w:[{f:"Quand j'etais jeune",e:"When I was young",t:""},{f:"Il faisait beau",e:"The weather was nice",t:""},{f:"Il pleuvait",e:"It was raining",t:""},{f:"Habituellement",e:"Usually",t:""},{f:"Tous les jours",e:"Every day",t:""},{f:"Autrefois",e:"In the past",t:""},{f:"Soudain",e:"Suddenly",t:""},{f:"Tout a coup",e:"All of a sudden",t:""},{f:"Pendant que",e:"While",t:""},{f:"A cette epoque",e:"At that time",t:""},{f:"Je vivais",e:"I was living",t:""},{f:"J'aimais",e:"I used to like",t:""},{f:"J'allais",e:"I used to go",t:""},{f:"Il y avait",e:"There was/were",t:""},{f:"C'etait",e:"It was",t:""},{f:"Je pensais",e:"I was thinking",t:""},{f:"Il semblait",e:"It seemed",t:""},{f:"Je connaissais",e:"I knew",t:""},{f:"Je voulais",e:"I wanted",t:""},{f:"Je pouvais",e:"I could",t:""}]},
+
+{lv:2,t:"Subjunctive & Necessity",img:I.school,g:"Subjunctive after wish/doubt/emotion/necessity. Triggers: <b>Il faut que</b>, <b>Je veux que</b>, <b>Bien que</b>. Formation: 'ils' present -> drop -ent -> add -e,-es,-e,-ions,-iez,-ent. Irregulars: etre->sois, avoir->aie.",c:"The subjunctive is feared but used constantly. Whenever you express a wish or doubt about someone else's action, you need it.",
+w:[{f:"Il faut que",e:"It is necessary that",t:""},{f:"Je veux que",e:"I want (someone to)",t:""},{f:"Il est important que",e:"It is important that",t:""},{f:"Bien que",e:"Although",t:""},{f:"Avant que",e:"Before",t:""},{f:"Pour que",e:"So that",t:""},{f:"Jusqu'a ce que",e:"Until",t:""},{f:"A moins que",e:"Unless",t:""},{f:"Je doute que",e:"I doubt that",t:""},{f:"Je regrette que",e:"I regret that",t:""},{f:"Il est possible que",e:"It's possible that",t:""},{f:"Que je sois",e:"That I be",t:""},{f:"Que j'aie",e:"That I have",t:""},{f:"Que j'aille",e:"That I go",t:""},{f:"Que je fasse",e:"That I do",t:""},{f:"Que je puisse",e:"That I can",t:""},{f:"Que je sache",e:"That I know",t:""},{f:"Que je vienne",e:"That I come",t:""},{f:"Que je prenne",e:"That I take",t:""},{f:"Il vaut mieux que",e:"It's better that",t:""}]},
+
+{lv:2,t:"Future & Conditional",img:I.city,g:"<b>Future</b>: infinitive + -ai,-as,-a,-ons,-ez,-ont. <b>Conditional</b>: infinitive + imparfait endings. <b>Je voudrais</b> (conditional) is much more polite than <b>je veux</b>.",c:"The conditional is essential for politeness. Every day in shops and restaurants, you use je voudrais, je pourrais, ce serait.",
+w:[{f:"Je parlerai",e:"I will speak",t:""},{f:"J'irai",e:"I will go",t:""},{f:"Je serai",e:"I will be",t:""},{f:"J'aurai",e:"I will have",t:""},{f:"Je ferai",e:"I will do",t:""},{f:"Il pleuvra",e:"It will rain",t:""},{f:"Ce sera",e:"It will be",t:""},{f:"Il faudra",e:"It will be necessary",t:""},{f:"Je voudrais",e:"I would like",t:""},{f:"Je pourrais",e:"I could",t:""},{f:"Ce serait",e:"It would be",t:""},{f:"J'aimerais",e:"I would like/love",t:""},{f:"On pourrait",e:"We could",t:""},{f:"Si j'avais...",e:"If I had...",t:""},{f:"Si j'etais...",e:"If I were...",t:""},{f:"Je serais",e:"I would be",t:""},{f:"Il faudrait",e:"It would be necessary",t:""},{f:"A l'avenir",e:"In the future",t:""},{f:"Un jour",e:"One day",t:""},{f:"Bientot",e:"Soon",t:""}]},
+
+{lv:2,t:"Work & Professional Life",img:I.office,g:"Formal French uses <b>vous</b> exclusively. Email: <b>Madame, Monsieur</b>. Closing: <b>Cordialement</b>. Key: <b>Veuillez</b> (please, very formal).",c:"35-hour work week is standard. 5 weeks vacation minimum by law. Lunch breaks 1-2 hours. You always say vous at work until explicitly invited to use tu.",
+w:[{f:"Le travail",e:"Work",t:""},{f:"Un emploi",e:"A job",t:""},{f:"Le bureau",e:"Office",t:""},{f:"L'entreprise",e:"Company",t:""},{f:"Le patron",e:"Boss",t:""},{f:"Le/La collegue",e:"Colleague",t:""},{f:"Un entretien",e:"Interview",t:""},{f:"Le salaire",e:"Salary",t:""},{f:"Les vacances",e:"Vacation",t:""},{f:"La reunion",e:"Meeting",t:""},{f:"Le projet",e:"Project",t:""},{f:"Le client",e:"Client",t:""},{f:"Envoyer",e:"To send",t:""},{f:"Recevoir",e:"To receive",t:""},{f:"Cordialement",e:"Best regards",t:""},{f:"Veuillez",e:"Please (very formal)",t:""},{f:"Ci-joint",e:"Attached",t:""},{f:"Un CV",e:"Resume",t:""},{f:"Postuler",e:"To apply",t:""},{f:"Le stage",e:"Internship",t:""}]},
+
+// ═══ B2 (4 units) ═══
+{lv:3,t:"Argumentation & Debate",img:I.debate,g:"Structure: <b>These</b>->Arguments->Examples-><b>Antithese</b>->Counter-><b>Synthese</b>->Conclusion. Master connectors!",c:"The these-antithese-synthese structure is taught from secondary school and expected in all formal French writing.",
+w:[{f:"Certes... mais",e:"Certainly... but",t:""},{f:"Par consequent",e:"Consequently",t:""},{f:"En effet",e:"Indeed",t:""},{f:"Neanmoins",e:"Nevertheless",t:""},{f:"Toutefois",e:"However",t:""},{f:"En revanche",e:"On the other hand",t:""},{f:"D'une part... d'autre part",e:"On one hand... other",t:""},{f:"Ainsi",e:"Thus",t:""},{f:"En somme",e:"In short",t:""},{f:"Il convient de",e:"It is appropriate to",t:""},{f:"Il s'avere que",e:"It turns out that",t:""},{f:"Il est indeniable que",e:"It is undeniable",t:""},{f:"Force est de constater",e:"One must acknowledge",t:""},{f:"Autrement dit",e:"In other words",t:""},{f:"C'est-a-dire",e:"That is to say",t:""},{f:"En d'autres termes",e:"In other terms",t:""},{f:"A cet egard",e:"In this regard",t:""},{f:"En ce qui concerne",e:"Regarding",t:""},{f:"Quant a",e:"As for",t:""},{f:"Dans cette optique",e:"From this perspective",t:""}]},
+
+{lv:3,t:"Complex Tenses",img:I.books,g:"<b>Plus-que-parfait</b>: had done (avoir/etre imparfait + pp). <b>Futur anterieur</b>: will have done. <b>Conditionnel passe</b>: would have done. <b>Passive</b>: etre + pp.",c:"These tenses let you express precise time relationships. Essential for formal writing and storytelling.",
+w:[{f:"J'avais mange",e:"I had eaten",t:""},{f:"Il avait fini",e:"He had finished",t:""},{f:"J'aurai termine",e:"I will have finished",t:""},{f:"J'aurais voulu",e:"I would have wanted",t:""},{f:"Il aurait du",e:"He should have",t:""},{f:"Si j'avais su",e:"If I had known",t:""},{f:"Apres avoir mange",e:"After having eaten",t:""},{f:"Avant de partir",e:"Before leaving",t:""},{f:"Le livre est lu",e:"The book is read",t:""},{f:"La maison a ete construite",e:"The house was built",t:""},{f:"Ayant fini",e:"Having finished",t:""},{f:"En mangeant",e:"While eating",t:""},{f:"Tout en marchant",e:"While walking",t:""},{f:"Faisant",e:"Doing/Making",t:""},{f:"Etant donne que",e:"Given that",t:""}]},
+
+{lv:3,t:"Media & Current Events",img:I.office,g:"<b>Selon...</b> = According to. <b>Il s'agit de</b> = It concerns. <b>Il parait que</b> = It seems that. News vocab for discussing current events.",c:"France has strong press tradition. Major sources: Le Monde, Le Figaro, Liberation. Political debate is common in daily conversation.",
+w:[{f:"Un journal",e:"Newspaper",t:""},{f:"Les informations",e:"The news",t:""},{f:"Un article",e:"Article",t:""},{f:"Selon",e:"According to",t:""},{f:"D'apres",e:"According to",t:""},{f:"Il parait que",e:"It seems that",t:""},{f:"Il s'agit de",e:"It concerns",t:""},{f:"Un sondage",e:"A poll/survey",t:""},{f:"Une enquete",e:"Investigation",t:""},{f:"Un reportage",e:"Report",t:""},{f:"En direct",e:"Live (broadcast)",t:""},{f:"Un temoin",e:"Witness",t:""},{f:"La politique",e:"Politics",t:""},{f:"L'economie",e:"Economy",t:""},{f:"Le chomage",e:"Unemployment",t:""},{f:"La manifestation",e:"Demonstration/Protest",t:""},{f:"La loi",e:"Law",t:""},{f:"Le gouvernement",e:"Government",t:""},{f:"L'election",e:"Election",t:""},{f:"Le droit",e:"Right (legal)",t:""}]},
+
+{lv:3,t:"Environment & Society",img:I.nature,g:"Express concerns: <b>Il est essentiel de</b>. Discuss problems: <b>le rechauffement climatique</b>. Express solutions: <b>On devrait</b>, <b>Il faudrait</b>.",c:"France banned single-use plastics, invests in nuclear energy (~70% of electricity). Environmental topics appear frequently in certification exams.",
+w:[{f:"Le rechauffement climatique",e:"Global warming",t:""},{f:"La pollution",e:"Pollution",t:""},{f:"L'environnement",e:"Environment",t:""},{f:"Le developpement durable",e:"Sustainable development",t:""},{f:"Recycler",e:"To recycle",t:""},{f:"L'energie renouvelable",e:"Renewable energy",t:""},{f:"Proteger",e:"To protect",t:""},{f:"Sauver",e:"To save",t:""},{f:"Detruire",e:"To destroy",t:""},{f:"L'empreinte carbone",e:"Carbon footprint",t:""},{f:"Les dechets",e:"Waste",t:""},{f:"La foret",e:"Forest",t:""},{f:"L'espece",e:"Species",t:""},{f:"Menacer",e:"To threaten",t:""},{f:"La planete",e:"Planet",t:""},{f:"Il est essentiel de",e:"It is essential to",t:""},{f:"On devrait",e:"We should",t:""},{f:"L'avenir",e:"The future",t:""},{f:"La generation",e:"Generation",t:""},{f:"Le changement",e:"Change",t:""}]},
+
+// ═══ C1 (3 units) ═══
+{lv:4,t:"Language Registers & Slang",img:I.city,g:"<b>Soutenu</b>(formal): Je ne sais point. <b>Courant</b>(standard): Je ne sais pas. <b>Familier</b>(informal): Chais pas. <b>Verlan</b>: femme->meuf, bizarre->zarbi.",c:"Native speakers switch registers constantly. Verlan originated in Paris suburbs, now mainstream. Understanding all three is essential.",
+w:[{f:"Soutenu",e:"Formal register",t:""},{f:"Courant",e:"Standard register",t:""},{f:"Familier",e:"Informal register",t:""},{f:"Chais pas",e:"I dunno",t:""},{f:"Bosser",e:"To work (slang)",t:""},{f:"Bouquin",e:"Book (slang)",t:""},{f:"Bagnole",e:"Car (slang)",t:""},{f:"Flic",e:"Cop (slang)",t:""},{f:"Meuf",e:"Woman (verlan)",t:""},{f:"Mec",e:"Guy",t:""},{f:"Kiffer",e:"To love (slang)",t:""},{f:"Ouf/C'est ouf",e:"Crazy (verlan of fou)",t:""},{f:"Chelou",e:"Weird (verlan of louche)",t:""},{f:"Nickel",e:"Perfect (slang)",t:""},{f:"Grave",e:"Totally/Seriously",t:""},{f:"Ca craint",e:"That sucks",t:""},{f:"Galerer",e:"To struggle",t:""},{f:"Pote",e:"Buddy",t:""},{f:"La thune",e:"Money (slang)",t:""},{f:"Le taf",e:"Job (slang)",t:""}]},
+
+{lv:4,t:"Idioms & Expressions",img:I.wine,g:"French is rich with idioms. Many involve animals, food, or body parts. Understanding them requires cultural knowledge, not just vocabulary.",c:"Mastering idioms separates advanced learners from near-native speakers. French people use them constantly in daily conversation.",
+w:[{f:"Avoir le cafard",e:"To feel blue",t:"Literally: have the cockroach"},{f:"Poser un lapin",e:"To stand someone up",t:"Literally: place a rabbit"},{f:"Couter les yeux de la tete",e:"To cost a fortune",t:""},{f:"Mettre son grain de sel",e:"Give unsolicited opinion",t:""},{f:"Tomber dans les pommes",e:"To faint",t:"Literally: fall in the apples"},{f:"Il pleut des cordes",e:"It's pouring rain",t:"Literally: raining ropes"},{f:"Avoir un chat dans la gorge",e:"Have a frog in throat",t:"French use cat!"},{f:"Etre dans la lune",e:"To be daydreaming",t:""},{f:"Avoir la flemme",e:"To feel lazy",t:""},{f:"Ce n'est pas la mer a boire",e:"It's not that hard",t:""},{f:"Appeler un chat un chat",e:"To call a spade a spade",t:""},{f:"Avoir le beurre et l'argent du beurre",e:"Have your cake and eat it",t:""},{f:"En faire tout un fromage",e:"Make a mountain of a molehill",t:"Literally: make a cheese of it"},{f:"Les doigts dans le nez",e:"Very easily",t:"Literally: fingers in the nose"},{f:"Donner sa langue au chat",e:"To give up guessing",t:""}]},
+
+{lv:4,t:"Academic Writing",img:I.books,g:"Academic French requires: <b>accroche</b>(hook), <b>problematique</b>(central question), <b>annonce du plan</b>(roadmap). Formal connectors and impersonal constructions.",c:"French academic writing is highly structured and formal. This ability is required for C1 certification and university study in France.",
+w:[{f:"Problematique",e:"Central question",t:""},{f:"Il convient de souligner",e:"It should be emphasized",t:""},{f:"En l'occurrence",e:"In this case",t:""},{f:"A cet egard",e:"In this regard",t:""},{f:"En guise de conclusion",e:"By way of conclusion",t:""},{f:"Par ailleurs",e:"Furthermore",t:""},{f:"En ce qui concerne",e:"Regarding",t:""},{f:"Compte tenu de",e:"Given/Considering",t:""},{f:"Il est indeniable que",e:"It is undeniable",t:""},{f:"En definitive",e:"Ultimately",t:""},{f:"Neanmoins",e:"Nevertheless",t:""},{f:"Au prealable",e:"Beforehand",t:""},{f:"Il va sans dire",e:"It goes without saying",t:""},{f:"De surcroit",e:"Moreover",t:""},{f:"En l'espece",e:"In this particular case",t:""}]},
+
+// ═══ C2 (3 units) ═══
+{lv:5,t:"The Dissertation",img:I.art,g:"Gold standard of French writing: <b>Introduction</b>(hook, definitions, problematique, plan) -> <b>These</b> -> <b>Antithese</b> -> <b>Synthese</b>. Each paragraph: idea->argument->example->analysis->transition.",c:"This format is central to French intellectual culture. Appears in all major examinations from baccalaureat to university.",
+w:[{f:"La these",e:"Thesis/Position",t:""},{f:"L'antithese",e:"Counter-argument",t:""},{f:"La synthese",e:"Synthesis",t:""},{f:"L'accroche",e:"Hook (opening)",t:""},{f:"La problematique",e:"Central question",t:""},{f:"Toujours est-il que",e:"The fact remains",t:""},{f:"Quoi qu'il en soit",e:"Be that as it may",t:""},{f:"Tant s'en faut",e:"Far from it",t:""},{f:"Au demeurant",e:"Moreover",t:""},{f:"A plus forte raison",e:"All the more reason",t:""},{f:"En filigrane",e:"Between the lines",t:""},{f:"D'ores et deja",e:"From now on",t:""},{f:"Le cas echeant",e:"If applicable",t:""},{f:"Somme toute",e:"All things considered",t:""},{f:"Voire",e:"Indeed/Or even",t:""}]},
+
+{lv:5,t:"Literature & Culture",img:I.art,g:"Discuss literature: <b>l'auteur</b>, <b>le personnage</b>, <b>l'intrigue</b>, <b>le denouement</b>. Analysis: <b>L'auteur met en lumiere</b>, <b>La metaphore suggere</b>.",c:"Key periods: 17th classicism (Moliere), 18th Enlightenment (Voltaire), 19th realism (Hugo, Flaubert), 20th existentialism (Sartre, Camus).",
+w:[{f:"L'auteur",e:"Author",t:""},{f:"Le personnage",e:"Character",t:""},{f:"L'intrigue",e:"Plot",t:""},{f:"Le denouement",e:"Resolution",t:""},{f:"Une metaphore",e:"Metaphor",t:""},{f:"Le style",e:"Style",t:""},{f:"Une oeuvre",e:"A (literary) work",t:""},{f:"Le registre",e:"Register/Tone",t:""},{f:"L'auteur met en lumiere",e:"The author highlights",t:""},{f:"Ce passage illustre",e:"This passage illustrates",t:""},{f:"Le recit",e:"The narrative",t:""},{f:"Le narrateur",e:"Narrator",t:""},{f:"Le point de vue",e:"Point of view",t:""},{f:"Un roman",e:"A novel",t:""},{f:"Un poeme",e:"A poem",t:""}]},
+
+{lv:5,t:"Near-Native Expression",img:I.paris,g:"At C2: double negation understatement (<b>Ce n'est pas ininteressant</b>), <b>ne...guere</b> (hardly), complex relative clauses with <b>dont, lequel, auquel</b>. Think in French.",c:"True fluency = thinking in French without translating. Appreciating wordplay, irony, cultural subtlety. Reading any text, expressing any idea with precision.",
+w:[{f:"Ce n'est pas ininteressant",e:"It's quite interesting (litotes)",t:""},{f:"Ne... guere",e:"Hardly",t:""},{f:"Ne... point",e:"Not at all (literary)",t:""},{f:"D'ores et deja",e:"From now on",t:""},{f:"En l'espece",e:"In this case",t:""},{f:"Somme toute",e:"All things considered",t:""},{f:"Le cas echeant",e:"If applicable",t:""},{f:"En filigrane",e:"Between the lines",t:""},{f:"A plus forte raison",e:"All the more reason",t:""},{f:"Quoi qu'il en soit",e:"Be that as it may",t:""},{f:"Tant s'en faut",e:"Far from it",t:""},{f:"Au demeurant",e:"Moreover",t:""},{f:"Il n'en reste pas moins",e:"The fact remains",t:""},{f:"Force est de constater",e:"One must acknowledge",t:""},{f:"En definitive",e:"Ultimately",t:""}]},
 ];
 
-// ── FRENCH MUSIC FOR LEARNING ──
-const MUSIC=[
-  {t:"ZAZ — Je Veux",d:"Upbeat & clear vocals. Perfect for beginners. Learn phrases about desires & dreams.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast1,url:"https://www.youtube.com/watch?v=Tm88GxV3Lbg"},
-  {t:"Stromae — Papaoutai",d:"Catchy beat, clear pronunciation. Learn family vocabulary & emotions.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast2,url:"https://www.youtube.com/watch?v=oiKj0Z_Xnjc"},
-  {t:"Indila — Derniere Danse",d:"Slow, haunting vocals. Great for picking up every word. Beautiful storytelling.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast3,url:"https://www.youtube.com/watch?v=K5KAc5CoCuk"},
-  {t:"Stromae — Alors On Danse",d:"Dance hit! Learn about daily life frustrations in French. Very catchy chorus.",tag:"Intermediate",tagBg:"var(--amber-l)",tagC:"var(--amber)",img:IMG.podcast1,url:"https://www.youtube.com/watch?v=VHoT4N43jK8"},
-  {t:"Edith Piaf — La Vie En Rose",d:"The most iconic French song ever. Slow, romantic, timeless vocabulary.",tag:"All Levels",tagBg:"var(--blue-l)",tagC:"var(--blue)",img:IMG.podcast2,url:"https://www.youtube.com/watch?v=kFzViYkZAz4"},
-  {t:"Kids United — L'Oiseau Et L'Enfant",d:"Sung by children's choir. Very clear, simple French. Great for total beginners.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast3,url:"https://www.youtube.com/watch?v=FLIKEzvHTyk"},
-  {t:"Louane — Avenir",d:"Modern pop, clear lyrics. Learn future tense expressions & emotional vocabulary.",tag:"Intermediate",tagBg:"var(--amber-l)",tagC:"var(--amber)",img:IMG.podcast1,url:"https://www.youtube.com/watch?v=Qs0OE5ROmNY"},
-  {t:"French Numbers Song 1-20",d:"Catchy counting song. The easiest way to memorize French numbers!",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast2,url:"https://www.youtube.com/watch?v=lsc3qLMaCu8"},
+// ═══ ACHIEVEMENTS ═══
+const ACH=[
+  {e:'🌱',l:'First Step',req:()=>done.length>=1},
+  {e:'🔥',l:'On Fire',req:()=>streak>=3},
+  {e:'📚',l:'Scholar',req:()=>done.length>=5},
+  {e:'⭐',l:'50 XP',req:()=>xp>=50},
+  {e:'🎯',l:'10 Units',req:()=>done.length>=10},
+  {e:'💯',l:'100 XP',req:()=>xp>=100},
+  {e:'🏆',l:'Half Way',req:()=>done.length>=14},
+  {e:'🎓',l:'Master',req:()=>done.length>=28},
 ];
 
-// ── NAVIGATION ──
-function go(page){
-  curPage=page;
-  document.querySelectorAll('.bnav button').forEach((b,i)=>{b.className=['home','learn','quiz','listen','chat'][i]===page?'on':''});
-  render();
+// ═══ NAV ═══
+function go(p){pg=p;document.querySelectorAll('.bnav button').forEach((b,i)=>{b.className=['home','practice','tutor'][i]===p?'on':''});R();window.scrollTo(0,0)}
+
+// ═══ RENDER ═══
+function R(){
+  const a=document.getElementById('app');
+  if(pg==='home')a.innerHTML=rH();
+  else if(pg==='units')a.innerHTML=rUs();
+  else if(pg==='unit')a.innerHTML=rU();
+  else if(pg==='practice')a.innerHTML=rP();
+  else if(pg==='tutor')a.innerHTML=rT();
+  sv();
 }
 
-// ── RENDER ──
-function render(){
-  const app=document.getElementById('app');
-  if(curPage==='home') app.innerHTML=renderHome();
-  else if(curPage==='learn') app.innerHTML=renderLearn();
-  else if(curPage==='quiz') app.innerHTML=renderQuiz();
-  else if(curPage==='listen') app.innerHTML=renderListen();
-  else if(curPage==='chat') app.innerHTML=renderChat();
-  window.scrollTo(0,0);
-}
-
-function renderHome(){
-  return `
-  <div class="hero">
-    <img class="hero-img" src="${IMG.hero}" alt="Paris">
-    <div class="hero-overlay">
-      <h1 style="font-family:var(--f2)">Le Professeur</h1>
-      <p>Learn French Free — Through Conversation, Culture & Practice</p>
-    </div>
-  </div>
-  <div class="ctr">
+function rH(){
+  const uByL=l=>U.filter(u=>u.lv===l),dByL=l=>uByL(l).filter(u=>done.includes(u.t)).length;
+  return `<div class="ctr">
+    <div class="hero"><img src="${I.paris}" loading="lazy"><div class="ov"><h2>Le Professeur</h2><p>Complete French Course — A1 to C2</p></div></div>
     <div class="stats">
-      <div class="stat"><div class="n" style="color:var(--amber)">⭐${xp}</div><div class="l">XP Earned</div></div>
-      <div class="stat"><div class="n" style="color:var(--red)">🔥${streak}</div><div class="l">Day Streak</div></div>
-      <div class="stat"><div class="n" style="color:var(--green)">✅${done.length}</div><div class="l">of ${L.length} Lessons</div></div>
+      <div class="stat"><div class="n" style="color:var(--gold)">⭐${xp}</div><div class="l">XP</div></div>
+      <div class="stat"><div class="n" style="color:var(--red)">🔥${streak}</div><div class="l">Streak</div></div>
+      <div class="stat"><div class="n" style="color:var(--green)">✅${done.length}</div><div class="l">of ${U.length}</div></div>
     </div>
-
-    <div class="infog">
-      <h4>📊 Your Learning Journey</h4>
-      <div class="pbar"><div class="pfill" style="background:var(--green);width:${done.length/L.length*100}%"></div></div>
-      <div class="row">
-        <div><div class="big">${L.reduce((a,l)=>a+l.w.length,0)}</div><div class="sm">Words to Learn</div></div>
-        <div><div class="big">10</div><div class="sm">Lessons</div></div>
-        <div><div class="big">8</div><div class="sm">Songs</div></div>
-        <div><div class="big">12</div><div class="sm">Chat Scenarios</div></div>
-      </div>
-    </div>
-
-    <div class="sec">📖 Continue Learning</div>
-    ${L.slice(0,3).map(l=>`
-      <div class="card" style="cursor:pointer" onclick="curLesson=${l.id-1};go('learn')">
-        <img class="card-img" src="${l.img}" alt="${l.t}" loading="lazy">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div>
-            <div style="font-size:16px;font-weight:800">${done.includes(l.id)?'✅ ':''} Lesson ${l.id}: ${l.t}</div>
-            <div style="font-size:12px;color:var(--tx2);margin-top:2px">🔊 ${l.w.length} words · 📘 Grammar · 🌍 Culture</div>
-          </div>
-          <span style="color:var(--blue);font-size:20px">→</span>
-        </div>
-      </div>
-    `).join('')}
-    <button class="btn btn-blue btn-full" onclick="go('learn')" style="margin-bottom:16px">See All 10 Lessons →</button>
-
-    <div class="sec">🎵 Learn French with Music</div>
-    <div class="pod" onclick="window.open('${MUSIC[0].url}','_blank')">
-      <img class="pod-img" src="${MUSIC[0].img}" alt="${MUSIC[0].t}" loading="lazy">
-      <div class="pod-info">
-        <h4>${MUSIC[0].t}</h4>
-        <p>${MUSIC[0].d}</p>
-        <span class="tag" style="background:${MUSIC[0].tagBg};color:${MUSIC[0].tagC}">${MUSIC[0].tag}</span>
-      </div>
-    </div>
-
-    <div class="sec">💬 Practice Speaking</div>
-    <div class="card" style="text-align:center;cursor:pointer" onclick="go('chat')">
-      <div style="font-size:40px;margin-bottom:8px">🎤</div>
-      <div style="font-size:16px;font-weight:800">AI French Tutor</div>
-      <div style="font-size:13px;color:var(--tx2);margin-top:4px">Chat in English, Hindi, or French</div>
-      <div style="font-size:12px;color:var(--tx2);margin-top:2px">12 scenarios: Café, Hotel, Doctor & more</div>
-    </div>
-
-    <div class="culture" onclick="go('learn')">
-      <img src="${IMG.cafe}" alt="French Culture" loading="lazy">
-      <div class="overlay">
-        <h4>🇫🇷 Discover French Culture</h4>
-        <p>Each lesson includes cultural insights about real life in France</p>
-      </div>
-    </div>
+    <div class="sec">🏆 Achievements</div>
+    <div class="ach">${ACH.map(a=>`<div class="ach-item ${a.req()?'earned':''}"><div class="emoji">${a.e}</div><div class="alabel">${a.l}</div></div>`).join('')}</div>
+    <div class="sec">📖 Select Your Level</div>
+    ${[0,1,2,3,4,5].map(l=>{const t=uByL(l).length,d=dByL(l),p=t?Math.round(d/t*100):0;
+      return `<div class="lvc" style="background:${LG[l]}" onclick="cLv=${l};pg='units';R()">
+        <div class="bg-img"><img src="${LI[l]}" loading="lazy"></div>
+        <span class="badge">${d}/${t} units</span>
+        <h3>${LN[l]}</h3><p>${LD[l]}</p>
+        <div class="pb"><div class="pf" style="width:${p}%"></div></div>
+      </div>`;
+    }).join('')}
   </div>`;
 }
 
-function renderLearn(){
-  const ls=L[curLesson];
-  return `<div style="display:flex;min-height:calc(100vh - 60px)">
-    <!-- SIDEBAR -->
-    <div style="width:64px;flex-shrink:0;background:var(--sf);border-right:1.5px solid var(--bd);overflow-y:auto;padding:10px 0;position:sticky;top:0;height:100vh">
-      ${L.map((l,i)=>{
-        const isOn=i===curLesson;
-        const isDone=done.includes(l.id);
-        const bg=isOn?'var(--blue)':isDone?'var(--green)':'transparent';
-        const color=isOn||isDone?'#fff':'var(--tx2)';
-        const border=isOn?'none':isDone?'none':'1.5px solid var(--bd)';
-        return `<button onclick="curLesson=${i};render()" style="width:44px;height:44px;border-radius:12px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:${bg};color:${color};border:${border};cursor:pointer;font-family:var(--f1);font-size:13px;font-weight:900;transition:.15s" title="${l.t}">
-          ${isDone&&!isOn?'✅':l.id}
-        </button>`;
-      }).join('')}
-    </div>
-
-    <!-- CONTENT -->
-    <div style="flex:1;overflow-y:auto;padding:16px 16px 100px">
-      <img src="${ls.img}" style="width:100%;height:160px;object-fit:cover;border-radius:16px;margin-bottom:14px" loading="lazy">
-      <h2 style="font-family:var(--f2);font-size:22px;margin-bottom:4px">Lesson ${ls.id}: ${ls.t}</h2>
-      <div style="font-size:13px;color:var(--tx2);margin-bottom:16px">🔊 ${ls.w.length} words · 📘 Grammar · 🌍 Culture</div>
-
-      <div class="gram"><b>📘 Grammar Coach:</b><br><br>${ls.g}</div>
-
-      ${ls.culture?`<div class="culture">
-        <img src="${ls.culture.img}" loading="lazy">
-        <div class="overlay"><h4>🌍 ${ls.culture.title}</h4><p>${ls.culture.text}</p></div>
-      </div>`:''}
-
-      <div class="sec">🔊 Vocabulary — Tap to Hear</div>
-      ${ls.w.map(w=>`<div class="wrow" onclick="say('${w.fr.replace(/'/g,"\\'")}')">
-        <span style="font-size:20px">🔊</span>
-        <div><div class="fr">${w.fr}</div><div class="en">${w.en}</div>${w.tip?`<div class="tip">💡 ${w.tip}</div>`:''}</div>
-      </div>`).join('')}
-
-      <button class="btn btn-out btn-full" onclick="playAll()" style="margin-top:10px">🔊 Play All Words</button>
-      <button class="btn btn-green btn-full" onclick="completeLesson()" style="margin-top:8px">✅ Complete Lesson (+10 XP)</button>
-      <button class="btn btn-blue btn-full" onclick="curLesson=${curLesson};go('quiz')" style="margin-top:8px">🎯 Take the Quiz →</button>
-    </div>
+function rUs(){
+  const us=U.filter(u=>u.lv===cLv);
+  return `<div class="ctr"><button class="bk" onclick="pg='home';R()">← Back</button>
+    <div class="hero"><img src="${LI[cLv]}" loading="lazy"><div class="ov"><h2>${LN[cLv]}</h2><p>${LD[cLv]}</p></div></div>
+    ${us.map((u,i)=>{const d=done.includes(u.t);return `<div class="uc ${d?'done':''}" onclick="cU=${U.indexOf(u)};uTab='lesson';pg='unit';R()">
+      <div class="uc-n" style="background:${LG[cLv]}">${d?'✓':i+1}</div>
+      <div class="uc-i"><h4>${u.t}</h4><p>${u.w.length} words</p></div>
+      <span style="color:var(--tx3);font-size:18px">›</span>
+    </div>`}).join('')}
   </div>`;
 }
 
-function renderQuiz(){
-  const ls=L[curLesson];
-  if(!quizQs.length) startQuiz();
-  const q=quizQs[quizIdx];
-  if(!q) return `<div class="ctr" style="padding-top:20px;text-align:center">
-    <div style="font-size:64px;margin-bottom:12px">🎉</div>
-    <h2>Quiz Complete!</h2>
-    <p style="color:var(--tx2);margin:8px 0 20px">Great job on Lesson ${ls.id}: ${ls.t}</p>
-    <button class="btn btn-green btn-full" onclick="startQuiz();render()">Try Again</button>
-    <button class="btn btn-out btn-full" style="margin-top:8px" onclick="go('learn')">Back to Lessons</button>
-  </div>`;
-
-  return `<div class="ctr" style="padding-top:16px">
-    <div class="sec">🎯 Quiz — Lesson ${ls.id}: ${ls.t}</div>
-    <div style="font-size:13px;color:var(--tx2);margin-bottom:8px">Question ${quizIdx+1} of ${quizQs.length}</div>
-    <div class="pbar"><div class="pfill" style="background:var(--blue);width:${quizIdx/quizQs.length*100}%"></div></div>
-
-    <div class="card" style="text-align:center;margin-top:14px">
-      <div style="font-size:12px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">${q.type==='pick'?'Choose the correct answer':q.type==='translate'?'Translate to French':'Listen & Type'}</div>
-
-      ${q.type==='listen'?`<button class="btn btn-out" onclick="say('${q.fr.replace(/'/g,"\\'")}')">🔊 Listen</button><br><br>
-        <input class="qinp" id="qinp" placeholder="Type what you heard..." onkeydown="if(event.key==='Enter')checkListen()">
-        <button class="btn btn-blue btn-sm" style="margin-top:10px" onclick="checkListen()">Check</button>
-        <div id="qres"></div>`
-      :q.type==='translate'?`<div style="font-size:20px;font-weight:800;margin:12px 0">${q.en}</div>
-        <input class="qinp" id="qinp" placeholder="Type in French..." onkeydown="if(event.key==='Enter')checkTranslate()">
-        <button class="btn btn-blue btn-sm" style="margin-top:10px" onclick="checkTranslate()">Check</button>
-        <div id="qres"></div>`
-      :`<div style="font-size:22px;font-weight:900;font-style:italic;margin:12px 0">${q.fr}</div>
-        <button class="btn btn-out btn-sm" onclick="say('${q.fr.replace(/'/g,"\\'")}')">🔊 Hear it</button>
-        <div style="margin-top:14px" id="qopts">${q.opts.map((o,i)=>`<button class="qopt" onclick="checkPick(this,${i},${q.ans})">${o}</button>`).join('')}</div>
-        <div id="qres"></div>`}
+function rU(){
+  const u=U[cU];
+  return `<div class="ctr"><button class="bk" onclick="pg='units';R()">← Back</button>
+    <div class="hero"><img src="${u.img}" loading="lazy"><div class="ov"><h2>${u.t}</h2><p>${LN[u.lv]} · ${u.w.length} words</p></div></div>
+    <div class="tabs">
+      <button class="${uTab==='lesson'?'on':''}" onclick="uTab='lesson';R()">📘 Lesson</button>
+      <button class="${uTab==='vocab'?'on':''}" onclick="uTab='vocab';R()">🔊 Vocab</button>
+      <button class="${uTab==='quiz'?'on':''}" onclick="uTab='quiz';stQ();R()">🎯 Quiz</button>
     </div>
-    <button class="btn btn-blue btn-full" id="qnext" style="display:none" onclick="quizIdx++;render()">Next Question →</button>
+    ${uTab==='lesson'?`<div class="gram"><b>Grammar:</b><br><br>${u.g}</div><div class="cult"><h4>🌍 Culture</h4><p>${u.c}</p></div><button class="btn btn-green" onclick="cmpU()">✅ Complete (+10 XP)</button>`
+    :uTab==='vocab'?`<p style="font-size:12px;color:var(--tx2);margin-bottom:10px">Tap any word to hear it:</p>${u.w.map(w=>`<div class="vr" onclick="say('${w.f.replace(/'/g,"\\'")}')"><span style="font-size:16px">🔊</span><div><div class="fr">${w.f}</div><div class="en">${w.e}</div>${w.t?`<div class="tip">💡 ${w.t}</div>`:''}</div></div>`).join('')}<button class="btn btn-out" style="margin-top:10px" onclick="pA()">🔊 Play All</button>`
+    :rQU()}
   </div>`;
 }
 
-function renderListen(){
-  return `<div class="ctr" style="padding-top:16px">
-    <div class="hero" style="border-radius:18px;margin-bottom:16px">
-      <img class="hero-img" src="${IMG.books}" alt="Listen" loading="lazy" style="height:180px">
-      <div class="hero-overlay">
-        <h1 style="font-family:var(--f2);font-size:22px">🎵 Learn French with Music</h1>
-        <p>Songs, audio practice & free resources</p>
-      </div>
-    </div>
+function cmpU(){const u=U[cU];if(!done.includes(u.t)){done.push(u.t);xp+=10;sv();alert('🎉 +10 XP!')}R()}
+async function pA(){for(const w of U[cU].w){say(w.f);await new Promise(r=>setTimeout(r,1500))}}
 
-    <div class="infog">
-      <h4>💡 Why Music Works</h4>
-      <p style="font-size:13px;line-height:1.7;color:var(--tx)">Music is the <b>ultimate memory tool</b>. Your brain remembers words in songs 3x better than in textbooks! Start with slow French songs. Sing along — even if you sound funny. That's how you build pronunciation muscle memory!</p>
-    </div>
+// ═══ QUIZ ═══
+function stQ(){const u=U[cU];if(!u)return;const ws=[...u.w].sort(()=>Math.random()-.5).slice(0,Math.min(10,u.w.length));
+qA=ws.map((w,i)=>{if(i%3===0){const o=u.w.filter(x=>x.e!==w.e).sort(()=>Math.random()-.5).slice(0,3);const opts=[w.e,...o.map(x=>x.e)].sort(()=>Math.random()-.5);return{tp:'pick',f:w.f,e:w.e,opts,ans:opts.indexOf(w.e)}}
+if(i%3===1)return{tp:'tr',f:w.f,e:w.e};return{tp:'li',f:w.f,e:w.e}});qI=0}
 
-    <div class="sec">🎵 French Songs for Learning</div>
-    ${MUSIC.map(p=>`<div class="pod" onclick="window.open('${p.url}','_blank')">
-      <img class="pod-img" src="${p.img}" alt="${p.t}" loading="lazy">
-      <div class="pod-info">
-        <h4>${p.t}</h4>
-        <p>${p.d}</p>
-        <span class="tag" style="background:${p.tagBg};color:${p.tagC}">${p.tag}</span>
-      </div>
-    </div>`).join('')}
+function rQU(){const q=qA[qI];
+if(!q)return `<div style="text-align:center;padding:20px"><div style="font-size:48px">🎉</div><h3 style="margin:8px 0">Quiz Done!</h3><button class="btn btn-green" onclick="stQ();R()">Again</button></div>`;
+return `<div class="exb">
+<div style="font-size:12px;color:var(--tx2);margin-bottom:6px">Q${qI+1}/${qA.length}</div>
+<div class="pb"><div class="pfl" style="background:var(--blue);width:${qI/qA.length*100}%"></div></div>
+<div class="ext">${q.tp==='pick'?'Choose answer':q.tp==='tr'?'Translate to French':'Listen & type'}</div>
+${q.tp==='pick'?`<div class="exq">${q.f}</div><button class="btn-sm btn-out" style="margin:0 auto 12px;display:block" onclick="say('${q.f.replace(/'/g,"\\'")}')">🔊</button>${q.opts.map((o,i)=>`<button class="exo" onclick="cP(this,${i},${q.ans})">${o}</button>`).join('')}`
+:q.tp==='tr'?`<div class="exq">${q.e}</div><input class="exi" id="qi" placeholder="French..." onkeydown="if(event.key==='Enter')cTr()"><button class="btn btn-blue btn-sm" style="margin-top:10px" onclick="cTr()">Check</button>`
+:`<button class="btn btn-out" onclick="say('${q.f.replace(/'/g,"\\'")}')">🔊 Listen</button><input class="exi" id="qi" style="margin-top:12px" placeholder="Type..." onkeydown="if(event.key==='Enter')cLi()"><button class="btn btn-blue btn-sm" style="margin-top:10px" onclick="cLi()">Check</button>`}
+<div id="qf"></div></div>
+<button class="btn btn-blue" id="qn" style="display:none" onclick="qI++;R()">Next →</button>`;
+}
 
-    <div class="sec">🔊 Mini Listening Exercise</div>
-    <div class="card" style="text-align:center">
-      <p style="font-size:13px;color:var(--tx2);margin-bottom:12px">Listen to the French sentence, then type what you heard:</p>
-      <button class="btn btn-blue" onclick="sayListenEx()">🔊 Play Sentence</button>
-      <input class="qinp" id="listen-ex-inp" style="margin-top:12px" placeholder="Type what you heard..." onkeydown="if(event.key==='Enter')checkListenEx()">
-      <button class="btn btn-sm btn-out" style="margin-top:8px" onclick="say(listenSentences[listenIdx],'fr-FR',.6)">🐢 Slow</button>
-      <button class="btn btn-sm btn-green" style="margin-top:8px" onclick="checkListenEx()">Check</button>
-      <div id="listen-ex-res" style="margin-top:10px"></div>
-    </div>
+function sfb(ok,c){document.getElementById('qf').innerHTML=`<div class="efb ${ok?'ok':'no'}">${ok?'✅ Correct! +2 XP':'❌ '+c}</div>`;document.getElementById('qn').style.display='block';if(ok){xp+=2;sv()}}
+function cP(b,i,a){document.querySelectorAll('.exo').forEach(x=>x.style.pointerEvents='none');if(i===a)b.classList.add('ok');else{b.classList.add('no');document.querySelectorAll('.exo')[a].classList.add('ok')}sfb(i===a,qA[qI].e)}
+function nm(s){return(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s]/g,'').trim()}
+function cTr(){const i=nm(document.getElementById('qi').value),a=nm(qA[qI].f);sfb(i===a||a.includes(i)||i.includes(a.split(' ')[0]),qA[qI].f)}
+function cLi(){const i=nm(document.getElementById('qi').value),a=nm(qA[qI].f),wa=a.split(/\s+/),wi=i.split(/\s+/);let h=0;wa.forEach(w=>{if(wi.some(x=>x===w||w.includes(x)))h++});sfb(h/wa.length>=.5,qA[qI].f)}
 
-    <div class="sec">🌐 Free French YouTube Channels</div>
-    <div class="card">
-      <p style="font-size:14px;line-height:1.8">
-        📺 <a href="https://www.youtube.com/c/innerFrench" target="_blank">innerFrench</a> — Natural French for intermediates, slow & clear<br>
-        📺 <a href="https://www.youtube.com/@EasyFrench" target="_blank">Easy French</a> — Street interviews with French & English subtitles<br>
-        📺 <a href="https://www.youtube.com/@LearnFrenchWithAlexa" target="_blank">Learn French with Alexa</a> — Fun lessons with humor<br>
-        📺 <a href="https://www.youtube.com/@FrenchPod101" target="_blank">FrenchPod101</a> — Massive library for all levels<br>
-        📺 <a href="https://www.youtube.com/@fraborisova" target="_blank">Piece of French</a> — Grammar & pronunciation explained clearly<br>
-        🎵 <a href="https://lyricstraining.com/fr" target="_blank">LyricsTraining</a> — Fill-in-the-blank games with French songs
-      </p>
-    </div>
+// ═══ PRACTICE ═══
+function rP(){
+  const ld=U.filter(u=>done.includes(u.t));
+  if(!ld.length)return `<div class="ctr" style="text-align:center;padding-top:30px"><div style="font-size:48px">📖</div><h3>Complete units first!</h3><p style="color:var(--tx2);margin:8px 0">Finish at least one unit to unlock practice.</p><button class="btn btn-gold" onclick="go('home')">Go to Levels</button></div>`;
+  const aw=ld.flatMap(u=>u.w),ws=[...aw].sort(()=>Math.random()-.5).slice(0,10);
+  if(!qA.length||pg!=='practice'){qA=ws.map((w,i)=>{const o=aw.filter(x=>x.e!==w.e).sort(()=>Math.random()-.5).slice(0,3);const opts=[w.e,...o.map(x=>x.e)].sort(()=>Math.random()-.5);if(i%3===0)return{tp:'pick',f:w.f,e:w.e,opts,ans:opts.indexOf(w.e)};if(i%3===1)return{tp:'tr',f:w.f,e:w.e};return{tp:'li',f:w.f,e:w.e}});qI=0}
+  return `<div class="ctr"><h2 style="font-family:var(--f2);margin-bottom:14px">🎯 Practice</h2><p style="color:var(--tx2);font-size:13px;margin-bottom:16px">Random review from ${ld.length} completed units</p>${rQU()}</div>`;
+}
+
+// ═══ TUTOR ═══
+function rT(){
+  return `<div class="ctr"><h2 style="font-family:var(--f2);margin-bottom:4px">💬 French Tutor</h2><p style="color:var(--tx2);font-size:13px;margin-bottom:10px">English, Hindi, or French</p>
+  <div class="lr"><button class="${mL==='en-US'?'on':''}" onclick="mL='en-US';R()">EN</button><button class="${mL==='fr-FR'?'on':''}" onclick="mL='fr-FR';R()">FR</button><button class="${mL==='hi-IN'?'on':''}" onclick="mL='hi-IN';R()">HI</button></div>
+  <div class="chatb" id="cb">${cM.map(m=>`<div class="cm ${m.w==='u'?'me':''}"><div class="cb ${m.w==='u'?'u':'ai'}">${m.w==='ai'?'<b style="color:var(--gold);font-size:11px">Professeur</b><br>':''}${m.t.replace(/\n/g,'<br>')}</div></div>`).join('')}</div>
+  <div class="chips">${['Teach me','Order coffee','Numbers','Pronunciation','Quiz me','Grammar'].map(c=>`<button onclick="sC('${c}')">${c}</button>`).join('')}</div>
+  <div class="crow"><button class="mbtn" id="mic" onclick="tM()">🎤</button><input id="ci" placeholder="Type here..." onkeydown="if(event.key==='Enter')sC()"><button class="sbtn" onclick="sC()">→</button></div>
   </div>`;
 }
 
-function renderChat(){
-  return `<div class="ctr" style="padding-top:16px">
-    <div class="sec">💬 AI French Tutor</div>
-    <div class="card">
-      <p style="font-size:13px;color:var(--tx2);margin-bottom:8px">Ask anything in English, Hindi, or French. I'll teach you!</p>
-      <div class="lang-sw">
-        <button class="${micLang==='en-US'?'on':''}" onclick="micLang='en-US';render()">🇬🇧 EN</button>
-        <button class="${micLang==='fr-FR'?'on':''}" onclick="micLang='fr-FR';render()">🇫🇷 FR</button>
-        <button class="${micLang==='hi-IN'?'on':''}" onclick="micLang='hi-IN';render()">🇮🇳 HI</button>
-      </div>
-      <div class="chat-box" id="chatbox">
-        <div class="cmsg"><div class="cbub t"><b style="color:var(--blue);font-size:12px">Professeur</b><br>Bonjour! 🇫🇷 I'm your French tutor. Ask me to teach you words, explain grammar, give a quiz, or practice a scenario like ordering at a café!</div></div>
-      </div>
-      <div class="chips">
-        ${['Teach me a word','How do I order coffee?','Pronounce Bonjour','Quiz me','Numbers 1-10','Help me in Hindi'].map(c=>`<button class="chip" onclick="sendChat('${c}')">${c}</button>`).join('')}
-      </div>
-      <div class="cinp">
-        <button class="mic-btn" id="mic" onclick="toggleMic()">🎤</button>
-        <input id="chatinp" placeholder="English, Hindi, or French..." onkeydown="if(event.key==='Enter')sendChat()">
-        <button class="send-btn" onclick="sendChat()">→</button>
-      </div>
-    </div>
-  </div>`;
-}
+function rp(t){const l=t.toLowerCase().trim(),h=/[\u0900-\u097F]/.test(t),aW=U.flatMap(u=>u.w),rw=()=>aW[Math.floor(Math.random()*aW.length)];
+if(h){const w=rw();say(w.f);return `Hindi samajhta hoon!\n"${w.f}" = "${w.e}"${w.t?'\n'+w.t:''}\nTry it!`}
+if(l.match(/^(hi|hello|hey)$/)){say('Bonjour');return `"Bonjour" = Hello!\n"Bonsoir" = Evening\n"Salut" = Hi (casual)`}
+if(l.includes('how are you')){say('Comment ca va');return `"Comment allez-vous?" (formal)\n"Ca va?" (casual)\nResponse: "Tres bien!"`}
+if(l.includes('thank')){say('Merci');return `"Merci" = Thanks\n"Merci beaucoup" = Thanks a lot\n"De rien" = You're welcome`}
+if(l.includes('order')||l.includes('coffee')||l.includes('cafe')){say('Je voudrais un cafe');return `"Je voudrais un cafe" = I'd like a coffee\n"S'il vous plait" = Please\n"L'addition" = The bill`}
+if(l.includes('number')||l.includes('count')){say('un, deux, trois');return `1=un 2=deux 3=trois 4=quatre 5=cinq\n6=six 7=sept 8=huit 9=neuf 10=dix\n\n70=soixante-dix (60+10)!`}
+if(l.includes('teach')||l.includes('word')||l.includes('learn')){const w=rw();say(w.f);return `"${w.f}" = "${w.e}"${w.t?'\n'+w.t:''}\nSay it aloud!`}
+if(l.includes('how do i say')||l.includes('translate')){const m=l.replace(/how do i say|translate|in french|\?/g,'').trim();const f=aW.find(w=>w.e.toLowerCase().includes(m));if(f){say(f.f);return `"${f.e}" = "${f.f}"`}const w=rw();say(w.f);return `Here's one:\n"${w.f}" = "${w.e}"`}
+if(l.includes('pronounc')||l.includes('sound')){return `R = throat (gentle gargle)\nU = say 'ee' with round lips\nNasal: air through nose\nSilent final consonants!\nSay a word to practice!`}
+if(l.includes('grammar')){return `Key points:\n- Nouns have gender (le/la)\n- Adjectives after nouns\n- 3 verb groups: -er,-ir,-re\n- Negation: ne...pas\nWhat topic?`}
+if(l.includes('help')||l.includes('confused')){const w=U[0].w[0];say(w.f);return `Start here:\n"${w.f}" = "${w.e}"\n\nTry: "Teach me" or "Quiz me"`}
+if(l.includes('quiz')){const w=rw();say(w.f);return `What does "${w.f}" mean?\nType your answer!`}
+if(l.includes('bonjour')||l.includes('merci')||l.includes('salut')||l.includes('oui')){say('Tres bien');const w=rw();return `Tres bien! Next:\n"${w.f}" = "${w.e}"`}
+if(l==='yes'||l==='ok'||l==='oui'){const w=rw();say(w.f);return `"${w.f}" = "${w.e}"`}
+for(const w of aW)if(l.includes(w.e.toLowerCase().split('/')[0].trim().split('(')[0].trim())&&w.e.length>2){say(w.f);return `Yes! "${w.f}" = "${w.e}" ✓`}
+const w=rw();say(w.f);return `"${w.f}" = "${w.e}"${w.t?'\n'+w.t:''}\nTry it!`}
 
-// ── ACTIONS ──
-async function playAll(){for(const w of L[curLesson].w){say(w.fr);await new Promise(r=>setTimeout(r,1800))}}
-function completeLesson(){const id=L[curLesson].id;if(!done.includes(id)){done.push(id);xp+=10;save();alert('🎉 Lesson '+id+' complete! +10 XP')}render()}
-function startQuiz(){const ls=L[curLesson];const ws=[...ls.w].sort(()=>Math.random()-.5).slice(0,8);
-  quizQs=ws.map((w,i)=>{
-    if(i%3===0){const others=ls.w.filter(x=>x.en!==w.en).sort(()=>Math.random()-.5).slice(0,3);const opts=[w.en,...others.map(o=>o.en)].sort(()=>Math.random()-.5);return{type:'pick',fr:w.fr,en:w.en,opts,ans:opts.indexOf(w.en)}}
-    if(i%3===1)return{type:'translate',fr:w.fr,en:w.en};
-    return{type:'listen',fr:w.fr,en:w.en};
-  });quizIdx=0;
-}
+function sC(o){const inp=document.getElementById('ci');const t=o||inp?.value?.trim();if(!t)return;if(inp)inp.value='';
+cM.push({w:'u',t});setTimeout(()=>{cM.push({w:'ai',t:rp(t)});R();const cb=document.getElementById('cb');if(cb)cb.scrollTop=cb.scrollHeight},500);
+R();const cb=document.getElementById('cb');if(cb)cb.scrollTop=cb.scrollHeight}
 
-function checkPick(btn,i,ans){
-  document.querySelectorAll('.qopt').forEach(b=>b.style.pointerEvents='none');
-  if(i===ans){btn.classList.add('ok');document.getElementById('qres').innerHTML='<div class="qresult ok">✅ Correct! +2 XP</div>';xp+=2;save()}
-  else{btn.classList.add('no');document.querySelectorAll('.qopt')[ans].classList.add('ok');document.getElementById('qres').innerHTML='<div class="qresult no">❌ Answer: '+quizQs[quizIdx].en+'</div>'}
-  document.getElementById('qnext').style.display='flex';
-}
-function checkTranslate(){const inp=document.getElementById('qinp').value.trim().toLowerCase();const q=quizQs[quizIdx];const a=q.fr.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');const i=inp.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const match=i===a||a.includes(i)||i.includes(a.split(' ')[0]);
-  if(match){document.getElementById('qres').innerHTML='<div class="qresult ok">✅ Correct! The answer is: '+q.fr+'</div>';xp+=2;save()}
-  else document.getElementById('qres').innerHTML='<div class="qresult no">❌ Correct answer: <b>'+q.fr+'</b></div>';
-  document.getElementById('qnext').style.display='flex';
-}
-function checkListen(){const inp=document.getElementById('qinp').value.trim().toLowerCase();const q=quizQs[quizIdx];const a=q.fr.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');const i=inp.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const words=a.split(/\s+/),iw=i.split(/\s+/);let hits=0;words.forEach(w=>{if(iw.some(x=>x===w||w.includes(x)))hits++});
-  const score=hits/words.length;
-  if(score>=.5){document.getElementById('qres').innerHTML='<div class="qresult ok">✅ Good! It was: '+q.fr+'</div>';xp+=2;save()}
-  else document.getElementById('qres').innerHTML='<div class="qresult no">❌ It was: <b>'+q.fr+'</b></div>';
-  document.getElementById('qnext').style.display='flex';
-}
+let isL=false;function tM(){const b=document.getElementById('mic');if(isL){b.classList.remove('on');isL=false;return}
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('Voice needs Chrome');return}
+const r=new SR();r.lang=mL;r.start();b.classList.add('on');isL=true;
+r.onresult=e=>{const ci=document.getElementById('ci');if(ci)ci.value=e.results[0][0].transcript;sC();b.classList.remove('on');isL=false};
+r.onend=()=>{b.classList.remove('on');isL=false};r.onerror=()=>{b.classList.remove('on');isL=false}}
 
-// ── LISTEN EXERCISE ──
-const listenSentences=["Bonjour, comment allez-vous?","Je voudrais un café, s'il vous plaît","Où est la gare?","Il fait beau aujourd'hui","Je m'appelle Marie","Merci beaucoup, au revoir","Tournez à gauche, puis tout droit","C'est combien, s'il vous plaît?"];
-let listenIdx=0;
-function sayListenEx(){listenIdx=Math.floor(Math.random()*listenSentences.length);say(listenSentences[listenIdx],'fr-FR',.8)}
-function checkListenEx(){const inp=document.getElementById('listen-ex-inp').value.trim().toLowerCase();const a=listenSentences[listenIdx].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');const i=inp.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const words=a.split(/\s+/),iw=i.split(/\s+/);let hits=0;words.forEach(w=>{if(iw.some(x=>x===w||w.includes(x)))hits++});
-  const el=document.getElementById('listen-ex-res');
-  if(hits/words.length>=.5)el.innerHTML='<div class="qresult ok">✅ Great! It was: "'+listenSentences[listenIdx]+'"</div>';
-  else el.innerHTML='<div class="qresult no">❌ It was: "'+listenSentences[listenIdx]+'"</div>';
-}
-
-// ── CHAT ENGINE (25+ patterns) ──
-function tutorReply(text){
-  const l=text.toLowerCase().trim();const ls=L[curLesson];
-  const rw=()=>ls.w[Math.floor(Math.random()*ls.w.length)];
-  const isHindi=/[\u0900-\u097F]/.test(text);
-
-  if(isHindi){const w=rw();say(w.fr);return `Main Hindi samajhta hoon!\n\nLet me teach you:\n"${w.fr}" = "${w.en}"${w.tip?'\n💡 '+w.tip:''}\n\nTry saying it!`}
-  if(l.match(/^(hi|hello|hey|good morning|good evening)$/)){say('Bonjour');return `In French: "Bonjour" = Hello!\n"Bonsoir" = Good evening\n"Salut" = Hi (casual)\n\nTry: "Bonjour, comment allez-vous?"`}
-  if(l.includes('how are you')||l.includes('comment')){say('Comment ça va');return `"How are you?" in French:\n\nFormal: "Comment allez-vous?"\nCasual: "Ça va?"\n\nResponse: "Très bien, merci!" (Very well, thanks!)`}
-  if(l.includes('thank')){say('Merci beaucoup');return `"Merci" = Thank you\n"Merci beaucoup" = Thank you very much\n"De rien" = You're welcome`}
-  if(l.includes('name')||l.includes('appelle')){say('Enchanté');return `"Je m'appelle [name]" = My name is...\n"Enchanté!" = Nice to meet you!\n"Comment tu t'appelles?" = What's your name?`}
-  if(l.includes('order')||l.includes('coffee')||l.includes('cafe')||l.includes('café')){say('Je voudrais un café');return `At a café:\n\n"Je voudrais un café" = I'd like a coffee\n"Un croissant, s'il vous plaît" = A croissant, please\n"L'addition" = The bill\n\nTry ordering!`}
-  if(l.includes('number')||l.includes('count')){say('un, deux, trois, quatre, cinq');return `1=un, 2=deux, 3=trois, 4=quatre, 5=cinq\n6=six, 7=sept, 8=huit, 9=neuf, 10=dix\n\nFun: 70=soixante-dix (60+10)!\n80=quatre-vingts (4×20)!\n\nTry counting to 5!`}
-  if(l.includes('teach')||l.includes('word')||l.includes('learn')||l.includes('new')){const w=rw();say(w.fr);return `New word! ✨\n\n"${w.fr}" = "${w.en}"${w.tip?'\n💡 '+w.tip:''}\n\nSay it out loud!`}
-  if(l.includes('how do i say')||l.includes('how to say')||l.includes('translate')){const m=l.replace(/how do i say|how to say|translate|in french|\?/g,'').trim();for(const les of L){const f=les.w.find(w=>w.en.toLowerCase().includes(m));if(f){say(f.fr);return `"${m}" in French:\n\n"${f.fr}" 🔊\n${f.tip?'💡 '+f.tip:''}`}}const w=rw();say(w.fr);return `I'll teach you this instead:\n\n"${w.fr}" = "${w.en}"`}
-  if(l.includes('what does')||l.includes('meaning')){const m=l.replace(/what does|mean|meaning|\?/g,'').trim();for(const les of L){const f=les.w.find(w=>w.fr.toLowerCase().includes(m));if(f){say(f.fr);return `"${f.fr}" = "${f.en}" 🔊`}}return `Try asking about a word from the current lesson!`}
-  if(l.includes('pronounc')||l.includes('sound')){return `French pronunciation tips:\n\n🗣 R = from the throat (gentle gargle)\n🗣 Nasal vowels: air through nose, NOT mouth\n🗣 Silent letters: most final consonants!\n🗣 Paris = "Pa-REE"\n\nSay a word and I'll help!`}
-  if(l.includes('grammar')||l.includes('rule')||l.includes('explain')){return `Grammar for "${ls.t}":\n\n${ls.g.replace(/<\/?b>/g,'')}`}
-  if(l.includes('help')||l.includes('confused')||l.includes('stuck')){const w=ls.w[0];say(w.fr);return `No worries! Start simple:\n\n"${w.fr}" = "${w.en}"\n\nTry saying it! You can also:\n• "Teach me a word"\n• "Quiz me"\n• "How do I say hello?"`}
-  if(l.includes('quiz')||l.includes('test')){const w=rw();say(w.fr);return `Quiz! 🎯\n\nWhat does "${w.fr}" mean?\n\nType your answer!`}
-  if(l.includes('vocab')||l.includes('list')){return `Lesson "${ls.t}" vocabulary:\n\n${ls.w.slice(0,6).map(w=>`"${w.fr}" = ${w.en}`).join('\n')}\n\n...check the Learn tab for more!`}
-  if(l.includes('bonjour')||l.includes('merci')||l.includes('salut')||l.includes('oui')||l.includes('voudrais')){say('Très bien');const w=rw();return `Très bien! 🎉 Great French!\n\nNext word: "${w.fr}" = "${w.en}"\nCan you use it?`}
-  if(l.includes('bye')||l.includes('goodbye')){say('Au revoir');return `Au revoir! 👋\n\n"Au revoir" = Goodbye\n"À bientôt" = See you soon\n"Bonne journée" = Have a good day`}
-  if(l==='yes'||l==='ok'||l==='oui'||l==='sure'){const w=rw();say(w.fr);return `Next word:\n\n"${w.fr}" = "${w.en}"${w.tip?'\n💡 '+w.tip:''}`}
-
-  // Check if user typed a correct quiz answer
-  for(const les of L){const f=les.w.find(w=>l.includes(w.en.toLowerCase().split('/')[0].trim().split('(')[0].trim()));if(f){say(f.fr);return `Yes! "${f.fr}" = "${f.en}" ✅\n\nSay "teach me" for more!`}}
-
-  // Default — always teach
-  const w=rw();say(w.fr);return `Let me teach you:\n\n"${w.fr}" = "${w.en}"${w.tip?'\n💡 '+w.tip:''}\n\nTry it out loud!`;
-}
-
-function sendChat(override){
-  const inp=document.getElementById('chatinp');
-  const text=override||inp.value.trim();
-  if(!text)return;
-  if(inp)inp.value='';
-
-  const box=document.getElementById('chatbox');
-  box.innerHTML+=`<div class="cmsg me"><div class="cbub u">${text}</div></div>`;
-
-  setTimeout(()=>{
-    const reply=tutorReply(text);
-    box.innerHTML+=`<div class="cmsg"><div class="cbub t"><b style="color:var(--blue);font-size:12px">Professeur</b><br>${reply.replace(/\n/g,'<br>')}</div></div>`;
-    box.scrollTop=box.scrollHeight;
-  },500);
-  box.scrollTop=box.scrollHeight;
-}
-
-// ── MIC ──
-let isListening=false;
-function toggleMic(){
-  const btn=document.getElementById('mic');
-  if(isListening){btn.classList.remove('on');isListening=false;return}
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){alert('Voice needs Chrome');return}
-  const r=new SR();r.lang=micLang;r.start();btn.classList.add('on');isListening=true;
-  r.onresult=e=>{document.getElementById('chatinp').value=e.results[0][0].transcript;sendChat();btn.classList.remove('on');isListening=false};
-  r.onend=()=>{btn.classList.remove('on');isListening=false};
-  r.onerror=()=>{btn.classList.remove('on');isListening=false};
-}
-
-// ── INIT ──
-render();
+R();
 </script>
 </body>
 </html>
