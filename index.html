@@ -153,7 +153,7 @@ a{color:var(--blue);text-decoration:none}
   <button class="on" onclick="go('home')"><span class="ico">🏠</span>Home</button>
   <button onclick="go('learn')"><span class="ico">📖</span>Learn</button>
   <button onclick="go('quiz')"><span class="ico">🎯</span>Quiz</button>
-  <button onclick="go('listen')"><span class="ico">🎧</span>Listen</button>
+  <button onclick="go('listen')"><span class="ico">🎵</span>Music</button>
   <button onclick="go('chat')"><span class="ico">💬</span>Chat</button>
 </div>
 
@@ -296,14 +296,16 @@ w:[
 ]},
 ];
 
-// ── PODCASTS ──
-const PODS=[
-  {t:"Coffee Break French",d:"Perfect for beginners. 15-20 min episodes with Mark & team.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast1,url:"https://open.spotify.com/show/2DCxEhAMTgHDGU5x5bpaaf"},
-  {t:"Learn French by Podcast",d:"Real French conversations broken down with grammar explanations.",tag:"Intermediate",tagBg:"var(--amber-l)",tagC:"var(--amber)",img:IMG.podcast2,url:"https://learnfrenchbypodcast.com/"},
-  {t:"Easy French Podcast",d:"Cultural topics in natural French with transcripts available.",tag:"Intermediate",tagBg:"var(--amber-l)",tagC:"var(--amber)",img:IMG.podcast3,url:"https://open.spotify.com/show/2EFMNVNMhDVoCVjK8jmr06"},
-  {t:"Duolingo French Podcast",d:"True stories told in easy French. Great for listening practice.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast1,url:"https://podcast.duolingo.com/french"},
-  {t:"One Thing in a French Day",d:"Short daily episodes about Parisian life. Beautiful and authentic.",tag:"Advanced",tagBg:"var(--purple-l)",tagC:"var(--purple)",img:IMG.podcast2,url:"https://www.onethinginafrenchday.com"},
-  {t:"FrenchPod101",d:"Massive library from absolute beginner to advanced.",tag:"All Levels",tagBg:"var(--blue-l)",tagC:"var(--blue)",img:IMG.podcast3,url:"https://www.frenchpod101.com/"},
+// ── FRENCH MUSIC FOR LEARNING ──
+const MUSIC=[
+  {t:"ZAZ — Je Veux",d:"Upbeat & clear vocals. Perfect for beginners. Learn phrases about desires & dreams.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast1,url:"https://www.youtube.com/watch?v=Tm88GxV3Lbg"},
+  {t:"Stromae — Papaoutai",d:"Catchy beat, clear pronunciation. Learn family vocabulary & emotions.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast2,url:"https://www.youtube.com/watch?v=oiKj0Z_Xnjc"},
+  {t:"Indila — Derniere Danse",d:"Slow, haunting vocals. Great for picking up every word. Beautiful storytelling.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast3,url:"https://www.youtube.com/watch?v=K5KAc5CoCuk"},
+  {t:"Stromae — Alors On Danse",d:"Dance hit! Learn about daily life frustrations in French. Very catchy chorus.",tag:"Intermediate",tagBg:"var(--amber-l)",tagC:"var(--amber)",img:IMG.podcast1,url:"https://www.youtube.com/watch?v=VHoT4N43jK8"},
+  {t:"Edith Piaf — La Vie En Rose",d:"The most iconic French song ever. Slow, romantic, timeless vocabulary.",tag:"All Levels",tagBg:"var(--blue-l)",tagC:"var(--blue)",img:IMG.podcast2,url:"https://www.youtube.com/watch?v=kFzViYkZAz4"},
+  {t:"Kids United — L'Oiseau Et L'Enfant",d:"Sung by children's choir. Very clear, simple French. Great for total beginners.",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast3,url:"https://www.youtube.com/watch?v=FLIKEzvHTyk"},
+  {t:"Louane — Avenir",d:"Modern pop, clear lyrics. Learn future tense expressions & emotional vocabulary.",tag:"Intermediate",tagBg:"var(--amber-l)",tagC:"var(--amber)",img:IMG.podcast1,url:"https://www.youtube.com/watch?v=Qs0OE5ROmNY"},
+  {t:"French Numbers Song 1-20",d:"Catchy counting song. The easiest way to memorize French numbers!",tag:"Beginner",tagBg:"var(--green-l)",tagC:"var(--green)",img:IMG.podcast2,url:"https://www.youtube.com/watch?v=lsc3qLMaCu8"},
 ];
 
 // ── NAVIGATION ──
@@ -346,7 +348,7 @@ function renderHome(){
       <div class="row">
         <div><div class="big">${L.reduce((a,l)=>a+l.w.length,0)}</div><div class="sm">Words to Learn</div></div>
         <div><div class="big">10</div><div class="sm">Lessons</div></div>
-        <div><div class="big">6</div><div class="sm">Podcasts</div></div>
+        <div><div class="big">8</div><div class="sm">Songs</div></div>
         <div><div class="big">12</div><div class="sm">Chat Scenarios</div></div>
       </div>
     </div>
@@ -366,13 +368,13 @@ function renderHome(){
     `).join('')}
     <button class="btn btn-blue btn-full" onclick="go('learn')" style="margin-bottom:16px">See All 10 Lessons →</button>
 
-    <div class="sec">🎧 Featured Podcast</div>
-    <div class="pod" onclick="window.open('${PODS[0].url}','_blank')">
-      <img class="pod-img" src="${PODS[0].img}" alt="${PODS[0].t}" loading="lazy">
+    <div class="sec">🎵 Learn French with Music</div>
+    <div class="pod" onclick="window.open('${MUSIC[0].url}','_blank')">
+      <img class="pod-img" src="${MUSIC[0].img}" alt="${MUSIC[0].t}" loading="lazy">
       <div class="pod-info">
-        <h4>${PODS[0].t}</h4>
-        <p>${PODS[0].d}</p>
-        <span class="tag" style="background:${PODS[0].tagBg};color:${PODS[0].tagC}">${PODS[0].tag}</span>
+        <h4>${MUSIC[0].t}</h4>
+        <p>${MUSIC[0].d}</p>
+        <span class="tag" style="background:${MUSIC[0].tagBg};color:${MUSIC[0].tagC}">${MUSIC[0].tag}</span>
       </div>
     </div>
 
@@ -396,30 +398,44 @@ function renderHome(){
 
 function renderLearn(){
   const ls=L[curLesson];
-  return `<div class="ctr" style="padding-top:16px">
-    <div class="sec">Select Lesson</div>
-    <div class="ltabs">${L.map((l,i)=>`<button class="ltab ${i===curLesson?'on':''} ${done.includes(l.id)?'done':''}" onclick="curLesson=${i};render()">${done.includes(l.id)?'✅ ':''}${l.id}. ${l.t}</button>`).join('')}</div>
+  return `<div style="display:flex;min-height:calc(100vh - 60px)">
+    <!-- SIDEBAR -->
+    <div style="width:64px;flex-shrink:0;background:var(--sf);border-right:1.5px solid var(--bd);overflow-y:auto;padding:10px 0;position:sticky;top:0;height:100vh">
+      ${L.map((l,i)=>{
+        const isOn=i===curLesson;
+        const isDone=done.includes(l.id);
+        const bg=isOn?'var(--blue)':isDone?'var(--green)':'transparent';
+        const color=isOn||isDone?'#fff':'var(--tx2)';
+        const border=isOn?'none':isDone?'none':'1.5px solid var(--bd)';
+        return `<button onclick="curLesson=${i};render()" style="width:44px;height:44px;border-radius:12px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:${bg};color:${color};border:${border};cursor:pointer;font-family:var(--f1);font-size:13px;font-weight:900;transition:.15s" title="${l.t}">
+          ${isDone&&!isOn?'✅':l.id}
+        </button>`;
+      }).join('')}
+    </div>
 
-    <img src="${ls.img}" style="width:100%;height:160px;object-fit:cover;border-radius:16px;margin-bottom:14px" loading="lazy">
-    <h2 style="font-family:var(--f2);font-size:22px;margin-bottom:4px">Lesson ${ls.id}: ${ls.t}</h2>
-    <div style="font-size:13px;color:var(--tx2);margin-bottom:16px">🔊 ${ls.w.length} words · 📘 Grammar · 🌍 Culture</div>
+    <!-- CONTENT -->
+    <div style="flex:1;overflow-y:auto;padding:16px 16px 100px">
+      <img src="${ls.img}" style="width:100%;height:160px;object-fit:cover;border-radius:16px;margin-bottom:14px" loading="lazy">
+      <h2 style="font-family:var(--f2);font-size:22px;margin-bottom:4px">Lesson ${ls.id}: ${ls.t}</h2>
+      <div style="font-size:13px;color:var(--tx2);margin-bottom:16px">🔊 ${ls.w.length} words · 📘 Grammar · 🌍 Culture</div>
 
-    <div class="gram"><b>📘 Grammar Coach:</b><br><br>${ls.g}</div>
+      <div class="gram"><b>📘 Grammar Coach:</b><br><br>${ls.g}</div>
 
-    ${ls.culture?`<div class="culture">
-      <img src="${ls.culture.img}" loading="lazy">
-      <div class="overlay"><h4>🌍 ${ls.culture.title}</h4><p>${ls.culture.text}</p></div>
-    </div>`:''}
+      ${ls.culture?`<div class="culture">
+        <img src="${ls.culture.img}" loading="lazy">
+        <div class="overlay"><h4>🌍 ${ls.culture.title}</h4><p>${ls.culture.text}</p></div>
+      </div>`:''}
 
-    <div class="sec">🔊 Vocabulary — Tap to Hear</div>
-    ${ls.w.map(w=>`<div class="wrow" onclick="say('${w.fr.replace(/'/g,"\\'")}')">
-      <span style="font-size:20px">🔊</span>
-      <div><div class="fr">${w.fr}</div><div class="en">${w.en}</div>${w.tip?`<div class="tip">💡 ${w.tip}</div>`:''}</div>
-    </div>`).join('')}
+      <div class="sec">🔊 Vocabulary — Tap to Hear</div>
+      ${ls.w.map(w=>`<div class="wrow" onclick="say('${w.fr.replace(/'/g,"\\'")}')">
+        <span style="font-size:20px">🔊</span>
+        <div><div class="fr">${w.fr}</div><div class="en">${w.en}</div>${w.tip?`<div class="tip">💡 ${w.tip}</div>`:''}</div>
+      </div>`).join('')}
 
-    <button class="btn btn-out btn-full" onclick="playAll()" style="margin-top:10px">🔊 Play All Words</button>
-    <button class="btn btn-green btn-full" onclick="completeLesson()" style="margin-top:8px">✅ Complete Lesson (+10 XP)</button>
-    <button class="btn btn-blue btn-full" onclick="curLesson=${curLesson};go('quiz')" style="margin-top:8px">🎯 Take the Quiz →</button>
+      <button class="btn btn-out btn-full" onclick="playAll()" style="margin-top:10px">🔊 Play All Words</button>
+      <button class="btn btn-green btn-full" onclick="completeLesson()" style="margin-top:8px">✅ Complete Lesson (+10 XP)</button>
+      <button class="btn btn-blue btn-full" onclick="curLesson=${curLesson};go('quiz')" style="margin-top:8px">🎯 Take the Quiz →</button>
+    </div>
   </div>`;
 }
 
@@ -465,18 +481,18 @@ function renderListen(){
     <div class="hero" style="border-radius:18px;margin-bottom:16px">
       <img class="hero-img" src="${IMG.books}" alt="Listen" loading="lazy" style="height:180px">
       <div class="hero-overlay">
-        <h1 style="font-family:var(--f2);font-size:22px">🎧 Listen & Learn</h1>
-        <p>Podcasts, audio lessons & listening practice</p>
+        <h1 style="font-family:var(--f2);font-size:22px">🎵 Learn French with Music</h1>
+        <p>Songs, audio practice & free resources</p>
       </div>
     </div>
 
     <div class="infog">
-      <h4>💡 Why Listening Matters</h4>
-      <p style="font-size:13px;line-height:1.7;color:var(--tx)">Listening is the <b>#1 skill</b> that unlocks speaking. Start with podcasts at your level. Listen for 15 minutes daily — even if you don't understand everything. Your brain learns patterns automatically!</p>
+      <h4>💡 Why Music Works</h4>
+      <p style="font-size:13px;line-height:1.7;color:var(--tx)">Music is the <b>ultimate memory tool</b>. Your brain remembers words in songs 3x better than in textbooks! Start with slow French songs. Sing along — even if you sound funny. That's how you build pronunciation muscle memory!</p>
     </div>
 
-    <div class="sec">🎙️ Recommended Podcasts</div>
-    ${PODS.map(p=>`<div class="pod" onclick="window.open('${p.url}','_blank')">
+    <div class="sec">🎵 French Songs for Learning</div>
+    ${MUSIC.map(p=>`<div class="pod" onclick="window.open('${p.url}','_blank')">
       <img class="pod-img" src="${p.img}" alt="${p.t}" loading="lazy">
       <div class="pod-info">
         <h4>${p.t}</h4>
@@ -495,14 +511,15 @@ function renderListen(){
       <div id="listen-ex-res" style="margin-top:10px"></div>
     </div>
 
-    <div class="sec">🌐 Free French Resources</div>
+    <div class="sec">🌐 Free French YouTube Channels</div>
     <div class="card">
       <p style="font-size:14px;line-height:1.8">
-        📺 <a href="https://www.youtube.com/c/innerFrench" target="_blank">innerFrench (YouTube)</a> — Natural French for intermediates<br>
-        📺 <a href="https://www.youtube.com/@EasyFrench" target="_blank">Easy French (YouTube)</a> — Street interviews with subtitles<br>
-        📖 <a href="https://www.rfi.fr/fr/podcasts/journal-en-fran%C3%A7ais-facile/" target="_blank">RFI Journal en Français Facile</a> — Daily news in simple French<br>
-        🎵 <a href="https://lyricstraining.com/fr" target="_blank">LyricsTraining</a> — Learn French through songs<br>
-        📚 <a href="https://www.frenchtoday.com/free/" target="_blank">French Today</a> — Free audiobook chapter
+        📺 <a href="https://www.youtube.com/c/innerFrench" target="_blank">innerFrench</a> — Natural French for intermediates, slow & clear<br>
+        📺 <a href="https://www.youtube.com/@EasyFrench" target="_blank">Easy French</a> — Street interviews with French & English subtitles<br>
+        📺 <a href="https://www.youtube.com/@LearnFrenchWithAlexa" target="_blank">Learn French with Alexa</a> — Fun lessons with humor<br>
+        📺 <a href="https://www.youtube.com/@FrenchPod101" target="_blank">FrenchPod101</a> — Massive library for all levels<br>
+        📺 <a href="https://www.youtube.com/@fraborisova" target="_blank">Piece of French</a> — Grammar & pronunciation explained clearly<br>
+        🎵 <a href="https://lyricstraining.com/fr" target="_blank">LyricsTraining</a> — Fill-in-the-blank games with French songs
       </p>
     </div>
   </div>`;
